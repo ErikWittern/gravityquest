@@ -3,7 +3,7 @@
 import Phaser from 'phaser'
 
 export default class extends Phaser.Sprite {
-  constructor ({ game, playState, text, noResume }) {
+  constructor ({ game, playState, message, noResume }) {
     super(game)
     // store reference to play state:
     this.play = playState
@@ -29,9 +29,9 @@ export default class extends Phaser.Sprite {
     this.overlay = game.add.image(-50, -50, rectangle.generateTexture())
     this.overlay.fixedToCamera = true
 
-    // add text message, if any
-    if (typeof text !== 'undefined') {
-      this.menuMessage = game.add.bitmapText(0, 100, 'font_white_32', text, 32)
+    // add message, if any
+    if (typeof message !== 'undefined') {
+      this.menuMessage = game.add.bitmapText(0, 100, 'font_white_32', message, 32)
       this.menuMessage.x = Math.floor(game.width / 2) - this.menuMessage.textWidth * 0.5
       this.menuMessage.fixedToCamera = true
     } else {

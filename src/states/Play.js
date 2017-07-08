@@ -485,6 +485,9 @@ export default class extends Phaser.State {
     this.gunEmitter.on = false // stop emitter
     this.gunSound.stop() // stop the sound of the gun
 
+    // hide lost message:
+    this.speechLost.visible = false
+
     // save completion of level:
     Utils.storeLevelResult(this.game.currentLevel, this.gq.collectedGoodies)
 
@@ -517,6 +520,9 @@ export default class extends Phaser.State {
     this.gunEmitter.on = false // stop emitter
     this.gunSound.stop() // stop the sound of the gun
 
+    // hide lost message:
+    this.speechLost.visible = false
+
     this.pauseMenu = new PauseMenu({
       game: this.game,
       playState: this,
@@ -533,6 +539,9 @@ export default class extends Phaser.State {
     this.line.visible = false // make line invisible
     this.gunEmitter.on = false // stop emitter
     this.gunSound.stop() // stop the sound of the gun
+
+    // hide lost message:
+    this.speechLost.visible = false
 
     this.player.burn(() => {
       this.pauseMenu = new PauseMenu({
