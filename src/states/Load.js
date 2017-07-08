@@ -82,7 +82,7 @@ export default class extends Phaser.State {
 
   create () {
     if (window.opener && typeof window.opener.level !== 'undefined') {
-      currentLevel = 0
+      this.game.currentLevel = 0
       this.state.start('Play')
     } else {
       this.state.start('Menu')

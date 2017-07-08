@@ -29,7 +29,7 @@ export default class extends Phaser.Sprite {
     this.overlay = game.add.image(-50, -50, rectangle.generateTexture())
     this.overlay.fixedToCamera = true
 
-  // add text message, if any
+    // add text message, if any
     if (typeof text !== 'undefined') {
       this.menuMessage = game.add.bitmapText(0, 100, 'font_white_32', text, 32)
       this.menuMessage.x = Math.floor(game.width / 2) - this.menuMessage.textWidth * 0.5
@@ -75,4 +75,15 @@ export default class extends Phaser.Sprite {
       this.menuSelectSound.play()
     }
   }
+
+  hidePauseMenu () {
+    if (typeof this.overlay !== 'undefined') { this.overlay.destroy() }
+    if (typeof this.menuMessage !== 'undefined') { this.menuMessage.destroy() }
+    if (typeof this.resumeText !== 'undefined') { this.resumeText.destroy() }
+    if (typeof this.retryText !== 'undefined') { this.retryText.destroy() }
+    if (typeof this.menuText !== 'undefined') { this.menuText.destroy() }
+
+    this.play.menuButton.visible = true
+    this.play.menuButtonBackground.visible = true
+  };
 }

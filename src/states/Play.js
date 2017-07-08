@@ -71,6 +71,15 @@ export default class extends Phaser.State {
     this.menuButtonBackground.width = 60
     this.menuButtonBackground.height = 60
     this.menuButtonBackground.inputEnabled = true
+    this.menuButtonBackground.events.onInputDown.add(() => {
+      this.pauseMenu = new PauseMenu({
+        game: this.game,
+        playState: this,
+        message: 'Paused',
+        noResume: false
+      })
+    })
+    this.menuButtonBackground.bringToTop()
 
     // set up helper variables variable:
     this.gq = {

@@ -8,6 +8,7 @@ import GameState from './states/Game'
 import MenuState from './states/Menu'
 import IntroState from './states/Intro'
 import PlayState from './states/Play'
+import OutroState from './states/Outro'
 
 import config from './config'
 
@@ -25,6 +26,7 @@ class Game extends Phaser.Game {
     this.state.add('Menu', MenuState, false)
     this.state.add('Intro', IntroState, false)
     this.state.add('Play', PlayState, false)
+    this.state.add('Outro', OutroState, false)
 
     this.state.start('Boot')
   }
