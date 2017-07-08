@@ -52,11 +52,11 @@ export default class extends Phaser.Sprite {
         goody.fixedToCamera = true
         game.add.tween(goody.scale).to(
           {x: 4.0, y: 4.0},
-          500,                      // duration
-          Phaser.Easing.Bounce.Out, // easing
-          true,                     // autostart
-          300 * (count + 1),        // delay
-          true                      // no-repeat
+          500,                       // duration
+          Phaser.Easing.Elastic.Out, // easing
+          true,                      // autostart
+          300 * (count + 1),         // delay
+          true                       // no-repeat
         )
       }
     } else {

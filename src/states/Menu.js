@@ -238,11 +238,11 @@ export default class extends Phaser.State {
         goody.fixedToCamera = true
         this.game.add.tween(goody.scale).to(
           {x: 2.0, y: 2.0},
-          500,                      // duration
-          Phaser.Easing.Bounce.Out, // easing
-          true,                     // autostart
-          100 * (count + 1),        // delay
-          true                      // no-repeat
+          500,                       // duration
+          Phaser.Easing.Elastic.Out, // easing
+          true,                      // autostart
+          100 * (count + 1),         // delay
+          true                       // no-repeat
         )
         this.levelStatsGroup.add(goody)
       }
