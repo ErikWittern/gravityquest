@@ -246,10 +246,6 @@ export default class extends Phaser.State {
       this.game.camera.focusOn(this.player)
     }
 
-    // store last camera position (for moving background)
-    this.cameraLastX = this.camera.x
-    this.cameraLastY = this.camera.y
-
     // create speech bubble to indicate being lost soon
     this.speechLost = this.game.add.sprite(this.player.x, this.player.y - 80, 'speechBubbleLost')
     this.speechLost.visible = false
@@ -375,12 +371,20 @@ export default class extends Phaser.State {
     }
 
     // parallax scrolling:
+    // store last camera position (for parallax background)
+    if (typeof this.cameraLastX === 'undefined') {
+      this.cameraLastX = this.game.camera.x
+    }
+    if (typeof this.cameraLastY === 'undefined') {
+      this.cameraLastY = this.game.camera.y
+    }
+
     if (this.game.camera.x !== this.cameraLastX) {
-      this.background.x -= 0.2 * (this.cameraLastX - this.game.camera.x)
+      this.background.x -= 0.3 * (this.cameraLastX - this.game.camera.x)
       this.cameraLastX = this.game.camera.x
     }
     if (this.game.camera.y !== this.cameraLastY) {
-      this.background.y -= 0.2 * (this.cameraLastY - this.game.camera.y)
+      this.background.y -= 0.3 * (this.cameraLastY - this.game.camera.y)
       this.cameraLastY = this.game.camera.y
     }
 

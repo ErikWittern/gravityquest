@@ -97,10 +97,10 @@ export default class extends Phaser.Sprite {
 
     this.animations.play('twist')
 
-  // animate player being absorbed and execute callback at the end:
+    // animate player being absorbed and execute callback at the end:
     this.game.add.tween(this).to({x: targetx, y: targety, angle: -720}, 2000, Phaser.Easing.Quadratic.In).start()
     this.game.add.tween(this.scale).to({x: 0.0, y: 0.0}, 2000, Phaser.Easing.Exponential.In).start().onComplete.add(() => {
-    // remove player (for audio to stop)
+      // remove player (for audio to stop)
       this.destroy()
       callback()
     })
