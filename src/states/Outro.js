@@ -1,6 +1,7 @@
 'use strict'
 
 import Phaser from 'phaser'
+import Utils from '../utils'
 
 export default class extends Phaser.State {
   init () {}
@@ -336,6 +337,8 @@ export default class extends Phaser.State {
     this.game.time.events.add(Phaser.Timer.SECOND * 3, () => {
       this.game.add.tween(this.credits).to({alpha: 0}, 800, Phaser.Easing.Cubic.Out).start().onComplete.add(() => {
         this.game.time.events.add(Phaser.Timer.SECOND * 2, () => {
+          // store that outro was viewed:
+          Utils.storeLevelResult(26, 0)
           this.game.state.start('Menu')
         })
       })

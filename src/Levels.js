@@ -2506,7 +2506,7 @@ module.exports = [
       y: 800
     },
     player: {
-      x: 436,
+      x: 406,
       y: 799,
       key: 'player'
     },
@@ -2848,7 +2848,7 @@ module.exports = [
       },
       {
         x: 740,
-        y: 880
+        y: 780
       },
       {
         x: 660,

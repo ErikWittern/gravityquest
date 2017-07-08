@@ -79,7 +79,7 @@ export default class extends Phaser.Sprite {
       this.play.goToNextLevel()
     })
     // do not show button after last level:
-    if (this.currentLevel === 29) {
+    if (this.game.currentLevel === 29) {
       nextLevelText.destroy()
       nextLevelBtn.destroy()
     }
