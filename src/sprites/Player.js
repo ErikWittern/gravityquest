@@ -8,8 +8,9 @@ export default class extends Phaser.Sprite {
   constructor ({ game, x, y, playState }) {
     super(game, x, y, 'player')
 
-    // hold reference to play state:
-    this.playState = playState
+    // hold reference to game and play state:
+    this.game = game
+    this.play = playState
 
     // define anchor and size:
     this.anchor.setTo(0.5, 0.5)
@@ -35,35 +36,56 @@ export default class extends Phaser.Sprite {
   update () {}
 
   appear () {
-    // add source:
-    this.source = this.game.add.sprite(this.x, this.y, 'target')
-    this.bringToTop()
-    this.source.scale.setTo(2, 2)
-    this.source.anchor.setTo(0.5, 0.5)
-    this.source.animations.add('spiral', [7, 6, 5, 4, 3, 2, 1, 9])
-    this.source.animations.play('spiral', 6, true)
+    return new Promise((resolve, reject) => {
+      // add source:
+      let source = this.game.add.sprite(this.x, this.y, 'target')
+      source.bringToTop()
+      source.scale.setTo(2, 2)
+      source.anchor.setTo(0.5, 0.5)
+      source.animations.add('spiral', [7, 6, 5, 4, 3, 2, 1, 9])
+      source.animations.play('spiral', 6, true)
 
-    this.animations.play('twist')
+      // set player to spinning mode:
+      this.animations.play('twist')
 
-    this.game.add.tween(this).to({angle: 720}, 2000, Phaser.Easing.Quadratic.Out, true, 1500, 0, false)
-    this.game.add.tween(this.scale).to({x: 1.0, y: 1.0}, 2000, Phaser.Easing.Quadratic.Out, true, 1500, 0, false).onComplete.add(() => {
-      this.game.add.tween(this.source.scale).to({x: 0, y: 0}, 1000, Phaser.Easing.Quadratic.In, true).onComplete.add(() => {
-        this.source.destroy()
+      this.game.add.tween(this).to(
+        {angle: 720},
+        2000,
+        Phaser.Easing.Quadratic.Out,
+        true,
+        1500,
+        0,
+        false
+      )
+      this.game.add.tween(this.scale).to(
+        {x: 1.0, y: 1.0},
+        2000,
+        Phaser.Easing.Quadratic.Out,
+        true,
+        1500,
+        0,
+        false
+      ).onComplete.add(() => {
+        this.game.add.tween(source.scale).to(
+          {x: 0, y: 0},
+          1000,
+          Phaser.Easing.Quadratic.In,
+          true
+        ).onComplete.add(() => {
+          source.destroy()
+        })
+
+        // animate player ready:
+        this.animations.play('idle')
+
+        // signal that player is ready:
+        this.play.gq.playerReady = true
+
+        resolve()
       })
-
-      this.animations.play('idle')
-
-      this.game.playerReady = true
-
-      // play level intro (if available):
-      if (typeof this.playState.level.intro !== 'undefined') {
-        this.playState.level.currentScene = 1
-        this.playState.level.intro.nextSceneAllowed = true
-        this.playState.level.intro(this.game, this.x, this.y, this.playState.level.currentScene)
-      }
-    })
-    this.game.time.events.add(Phaser.Timer.SECOND, () => {
-      this.appearanceSound.play()
+      this.game.time.events.add(Phaser.Timer.SECOND, () => {
+        this.appearanceSound.play()
+      })
     })
   }
 

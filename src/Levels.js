@@ -29,44 +29,46 @@ module.exports = [
     },
     novae: [],
     maxDistance: 250,
-    intro: function (game, x, y, scene) {
-      if (scene === 1) {
-        game.playerControls = false
-        this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
-        this.text = game.add.bitmapText(x + 30, y - 80 + 6 + 12, 'font_black_12', 'Where am I?', 12)
-      } else if (scene === 2) {
-        this.text.setText('Another\nblack hole...')
-        this.text.x = x + 18
-        this.text.y = y - 80 + 6 + 6
-      } else if (scene === 3) {
-        this.text.setText('Well, let\'s collect\nall minerals and\ntry to reach it.')
-        this.text.x = x + 6
-        this.text.y = y - 80 + 6
-      } else if (scene === 4) {
-        this.bubble.destroy()
-        this.text.destroy()
+    intro: {
+      numScenes: 5,
+      playScene (game, x, y, scene) {
+        if (scene === 1) {
+          this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
+          this.text = game.add.bitmapText(x + 30, y - 80 + 6 + 12, 'font_black_12', 'Where am I?', 12)
+        } else if (scene === 2) {
+          this.text.setText('Another\nblack hole...')
+          this.text.x = x + 18
+          this.text.y = y - 80 + 6 + 6
+        } else if (scene === 3) {
+          this.text.setText('Well, let\'s collect\nall minerals and\ntry to reach it.')
+          this.text.x = x + 6
+          this.text.y = y - 80 + 6
+        } else if (scene === 4) {
+          this.bubble.destroy()
+          this.text.destroy()
         // overlay:
-        this.overlay = game.add.graphics(0, 0)
-        this.overlay.beginFill(0x000000, 1)
-        this.overlay.drawRect(0, 0, game.world.width, game.world.height)
-        this.overlay.alpha = 0.7
-        this.overlay.endFill()
+          this.overlay = game.add.graphics(0, 0)
+          this.overlay.beginFill(0x000000, 1)
+          this.overlay.drawRect(0, 0, game.world.width, game.world.height)
+          this.overlay.alpha = 0.7
+          this.overlay.endFill()
         // instructions:
-        this.instructions = game.add.sprite(Math.floor(game.width / 2), Math.floor(game.height / 2), 'instructions')
-        this.instructions.anchor.setTo(0.5, 0.5)
-        this.instructions.scale.setTo(2, 2)
-        this.instructions.fixedToCamera = true
+          this.instructions = game.add.sprite(Math.floor(game.width / 2), Math.floor(game.height / 2), 'instructions')
+          this.instructions.anchor.setTo(0.5, 0.5)
+          this.instructions.scale.setTo(2, 2)
+          this.instructions.fixedToCamera = true
         // title
-        this.title = game.add.bitmapText(0, Math.floor(game.height / 2) - 120, 'font_white_16', 'Tap anywhere on the\nscreen to use\nthe gravitygun...\n \n \n \n \n \n \n \n \n \n \n...and the player will\naccelerate to the\nnearest asteroid.', 16)
-        this.title.x = Math.floor(game.width / 2) - this.title.textWidth / 2
-        this.title.fixedToCamera = true
-      } else if (scene === 5) {
-        this.instructions.destroy()
-        this.title.destroy()
-        this.overlay.destroy()
-        game.playerControls = true
+          this.title = game.add.bitmapText(0, Math.floor(game.height / 2) - 120, 'font_white_16', 'Tap anywhere on the\nscreen to use\nthe gravitygun...\n \n \n \n \n \n \n \n \n \n \n...and the player will\naccelerate to the\nnearest asteroid.', 16)
+          this.title.x = Math.floor(game.width / 2) - this.title.textWidth / 2
+          this.title.fixedToCamera = true
+        } else if (scene === 5) {
+          this.instructions.destroy()
+          this.title.destroy()
+          this.overlay.destroy()
+        }
       }
     },
+    numIntroScenes: 5,
     goodies: [
       {
         x: 515,

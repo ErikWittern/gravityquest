@@ -50,7 +50,7 @@ export default class extends Phaser.State {
     this.load.image('instructions', 'assets/images/instructions.png')
     this.load.image('earth', 'assets/images/earth.png')
     this.load.image('heart', 'assets/images/heart.png')
-    this.load.spritesheet('mute', 'assets/images/mute.png', 11, 10)
+    this.load.spritesheet('mute_button', 'assets/images/mute_button.png', 11, 10)
 
     this.load.image('nova_spark_1', 'assets/images/nova_spark_1.png')
     this.load.image('nova_spark_2', 'assets/images/nova_spark_2.png')

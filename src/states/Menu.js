@@ -4,6 +4,7 @@
 
 import Phaser from 'phaser'
 import Mute from '../sprites/mute'
+import Utils from '../utils'
 
 export default class extends Phaser.State {
   init () {}
@@ -14,7 +15,7 @@ export default class extends Phaser.State {
     // stop all eventually ongoing sounds:
     this.game.sound.stopAll()
 
-    // add sounds:
+    // add menu sounds:
     this.menuSelectSound = this.add.audio('menu_select', 0.5, false)
     this.music = this.add.audio('C95')
 
@@ -39,6 +40,9 @@ export default class extends Phaser.State {
     this.subtitle = this.add.bitmapText(Math.floor(this.game.width / 2) - 150, 220, 'font_white_24', 'Escape from space!', 24)
     this.subtitle.x = Math.floor(this.game.width / 2) - this.subtitle.textWidth * 0.5
 
+    // load level stats:
+    this.levelStats = Utils.loadLevelStats()
+
     // space between entries:
     this.entrySpace = 50
 
@@ -58,26 +62,13 @@ export default class extends Phaser.State {
       'Level 21', 'Level 22', 'Level 23', 'Level 24', 'Level 25', 'Outro']
 
     // Add bonus levels if all 75 minerals have been collected:
-    this.overallScore = 0
-    for (var i = this.textChoice.length - 1; i >= 0; i--) {
-      var stats = this.loadLevelStats(i)
-      if (typeof stats !== 'undefined' && stats !== null) {
-        this.overallScore = this.overallScore + parseInt(stats)
-      }
-    }
+    this.overallScore = this.levelStats.reduce((sum, points) => {
+      return sum + points
+    }, 0)
 
     if (this.overallScore >= 75) {
       // store that outro was viewed:
-      if (typeof Storage !== 'undefined') {
-        let stats = JSON.parse(localStorage.getItem('gravityquest'))
-        if (stats) {
-          stats[26] = 0
-        } else {
-          stats = []
-          stats[26] = 0
-        }
-        localStorage.setItem('gravityquest', JSON.stringify(stats))
-      }
+      Utils.storeLevelResult(26, 0)
 
       // add entries for bonus levels:
       this.textChoice.push('Bonus 1')
@@ -86,7 +77,10 @@ export default class extends Phaser.State {
     }
 
     // add navigation buttons:
-    this.nextLevels = this.game.add.sprite(this.game.width - 30, this.topSpace - 40 + (this.game.height - this.topSpace) * 0.5, 'triangle')
+    this.nextLevels = this.game.add.sprite(
+      this.game.width - 30,
+      this.topSpace - 40 + (this.game.height - this.topSpace) * 0.5,
+      'triangle')
     this.nextLevels.anchor.setTo(0.5, 0.5)
     this.nextLevels.scale.setTo(2, 2)
     this.nextLevelsBtn = this.game.add.sprite(this.nextLevels.x, this.nextLevels.y, 'empty')
@@ -94,37 +88,44 @@ export default class extends Phaser.State {
     this.nextLevelsBtn.anchor.setTo(0.5, 0.5)
     this.nextLevelsBtn.width = 60
     this.nextLevelsBtn.height = 250
-    this.nextLevelsBtn.events.onInputDown.add(function () {
-      if (this.offset + this.numOfEntries < this.textChoice.length && this.loadLevelStats(this.offset + this.numOfEntries - 1) >= 0 && this.loadLevelStats(this.offset + this.numOfEntries - 1) !== null) {
+    this.nextLevelsBtn.events.onInputDown.add(() => {
+      if (this.offset + this.numOfEntries < this.textChoice.length &&
+        this.levelStats[this.offset + this.numOfEntries - 1] >= 0 &&
+        this.levelStats[this.offset + this.numOfEntries - 1] !== null) {
         this.offset += this.numOfEntries
         this.showLevels()
         this.menuSelectSound.play()
       }
-    }, this)
+    })
 
-    this.previousLevels = this.game.add.sprite(30, this.topSpace - 40 + (this.game.height - this.topSpace) * 0.5, 'triangle')
+    this.previousLevels = this.game.add.sprite(
+      30,
+      this.topSpace - 40 + (this.game.height - this.topSpace) * 0.5,
+      'triangle')
     this.previousLevels.rotation = 3.14
     this.previousLevels.anchor.setTo(0.5, 0.5)
     this.previousLevels.scale.setTo(2, 2)
-    this.previousLevelsBtn = this.game.add.sprite(this.previousLevels.x, this.previousLevels.y, 'empty')
+    this.previousLevelsBtn = this.game.add.sprite(
+      this.previousLevels.x,
+      this.previousLevels.y,
+      'empty')
     this.previousLevelsBtn.inputEnabled = true
     this.previousLevelsBtn.anchor.setTo(0.5, 0.5)
     this.previousLevelsBtn.width = 60
     this.previousLevelsBtn.height = 250
-    this.previousLevelsBtn.events.onInputDown.add(function () {
+    this.previousLevelsBtn.events.onInputDown.add(() => {
       if (this.offset > 0) {
         this.offset = Math.max(this.offset - this.numOfEntries, 0)
         this.showLevels()
         this.menuSelectSound.play()
       }
-    }, this)
+    })
 
     // add mute button:
     this.mute = new Mute({
-      game: this,
+      game: this.game,
       x: this.world.width - 25,
-      y: this.world.height - 15,
-      asset: 'mute'
+      y: this.world.height - 25
     })
     this.add.existing(this.mute)
 
@@ -152,7 +153,7 @@ export default class extends Phaser.State {
   }
 
   showLevels () {
-    var statsBtn = this.loadLevelStats(this.offset + this.numOfEntries - 1)
+    let statsBtn = this.levelStats[this.offset + this.numOfEntries - 1]
     if (!(statsBtn >= 0 && statsBtn !== null && this.offset + this.numOfEntries <= 29)) {
       this.nextLevelsBtn.visible = false
       this.nextLevels.visible = false
@@ -172,45 +173,45 @@ export default class extends Phaser.State {
     this.storeMenuPosition(this.offset)
 
     // group to hold level stats:
-    if (typeof this.levelStats !== 'undefined') {
-      this.levelStats.destroy()
+    if (typeof this.levelStatsGroup !== 'undefined') {
+      this.levelStatsGroup.destroy()
     }
-    this.levelStats = this.add.group()
+    this.levelStatsGroup = this.add.group()
 
-    var lastLevel = Math.min(this.numOfEntries + this.offset, this.textChoice.length)
-    for (var i = this.offset; i < lastLevel; i++) {
+    let lastLevel = Math.min(this.numOfEntries + this.offset, this.textChoice.length)
+    for (let i = this.offset; i < lastLevel; i++) {
       if (i === 0) {
         // show "Intro:"
-        var levelText = this.game.add.bitmapText(70, this.topSpace + (i - this.offset) * this.entrySpace, 'font_white_16', this.textChoice[i], 16)
-        this.levelStats.add(levelText)
+        let levelText = this.game.add.bitmapText(70, this.topSpace + (i - this.offset) * this.entrySpace, 'font_white_16', this.textChoice[i], 16)
+        this.levelStatsGroup.add(levelText)
 
         // create intro btn:
-        var levelBtn = this.add.sprite(70, this.topSpace - 20 + (i - this.offset) * this.entrySpace, 'empty')
+        let levelBtn = this.add.sprite(70, this.topSpace - 20 + (i - this.offset) * this.entrySpace, 'empty')
         levelBtn.height = this.entrySpace
         levelBtn.width = 180
         levelBtn.level = i
         levelBtn.inputEnabled = true
         levelBtn.events.onInputDown.add(this.goToLevel, this)
-        this.levelStats.add(levelBtn)
+        this.levelStatsGroup.add(levelBtn)
       } else {
         // show title and button, if previous level is finished:
-        var statsPrev = this.loadLevelStats(i - 1)
+        let statsPrev = this.levelStats[i - 1]
         if (typeof statsPrev !== 'undefined' && statsPrev !== null) {
           // create level names:
           var levelText = this.game.add.bitmapText(70, this.topSpace + (i - this.offset) * this.entrySpace, 'font_white_16', this.textChoice[i], 16)
-          this.levelStats.add(levelText)
+          this.levelStatsGroup.add(levelText)
 
           // create level btn:
-          var levelBtn = game.add.sprite(70, this.topSpace - 20 + (i - this.offset) * this.entrySpace, 'empty')
+          var levelBtn = this.game.add.sprite(70, this.topSpace - 20 + (i - this.offset) * this.entrySpace, 'empty')
           levelBtn.height = this.entrySpace
           levelBtn.width = 180
           levelBtn.level = i
           levelBtn.inputEnabled = true
           levelBtn.events.onInputDown.add(this.goToLevel, this)
-          this.levelStats.add(levelBtn)
+          this.levelStatsGroup.add(levelBtn)
         }
         // show stats, if available:
-        var stats = this.loadLevelStats(i)
+        var stats = this.levelStats[i]
         if (typeof stats !== 'undefined' && stats !== null && i !== 26) {
           this.showLevelStats(stats, this.topSpace + (i - this.offset) * this.entrySpace)
         }
@@ -221,38 +222,35 @@ export default class extends Phaser.State {
   showLevelStats (stats, y) {
     if (stats <= 3) {
       // add borders around collected goodies:
-      for (var count = 0; count < 3; count++) {
-        var goodyBorder = game.add.sprite(Math.floor(170 + (30 * count)), y + 5, 'goody_border')
+      for (let count = 0; count < 3; count++) {
+        let goodyBorder = this.game.add.sprite(Math.floor(170 + (30 * count)), y + 5, 'goody_border')
         goodyBorder.anchor.setTo(0.5, 0.5)
         goodyBorder.scale.setTo(2, 2)
         goodyBorder.fixedToCamera = true
-        this.levelStats.add(goodyBorder)
+        this.levelStatsGroup.add(goodyBorder)
       }
 
       // add indication of collected goodies:
-      for (var count = 0; count < stats; count++) {
-        var goody = game.add.sprite(Math.floor(170 + (30 * count)), y + 5, 'goody')
+      for (let count = 0; count < stats; count++) {
+        let goody = this.game.add.sprite(Math.floor(170 + (30 * count)), y + 5, 'goody')
         goody.anchor.setTo(0.5, 0.5)
         goody.scale.setTo(0, 0)
         goody.fixedToCamera = true
-        game.add.tween(goody.scale).to({x: 2.0, y: 2.0}, 500, Phaser.Easing.Bounce.Out, true, 0, false).delay(100 * (count + 1)).start()
-        this.levelStats.add(goody)
+        this.game.add.tween(goody.scale).to(
+          {x: 2.0, y: 2.0},
+          500,                      // duration
+          Phaser.Easing.Bounce.Out, // easing
+          true,                     // autostart
+          100 * (count + 1),        // delay
+          true                      // no-repeat
+        )
+        this.levelStatsGroup.add(goody)
       }
     } else {
       // add indication that more than 3 minerals have been collected:
-      var goodiesText = game.add.bitmapText(160, y, 'font_white_16', stats + ' / 40', 16)
+      var goodiesText = this.game.add.bitmapText(160, y, 'font_white_16', stats + ' / 40', 16)
       goodiesText.fixedToCamera = true
-      this.levelStats.add(goodiesText)
-    }
-  }
-
-  loadLevelStats (level) {
-    if (typeof Storage !== 'undefined') {
-      var stats = JSON.parse(localStorage.getItem('gravity-gun'))
-      if (stats !== null && typeof stats !== 'undefined') {
-        return stats[level]
-      }
-      return null
+      this.levelStatsGroup.add(goodiesText)
     }
   }
 
@@ -274,11 +272,11 @@ export default class extends Phaser.State {
 
   fadeIn () {
     // overlay:
-    var overlay = this.add.graphics(0, 0)
+    let overlay = this.add.graphics(0, 0)
     overlay.beginFill(0x000000, 1)
     overlay.drawRect(0, 0, this.world.width, this.world.height)
     overlay.alpha = 1
     overlay.endFill()
-    var titleTween = this.add.tween(overlay).to({alpha: 0}, 800, 0).start()
+    this.add.tween(overlay).to({alpha: 0}, 800, 0).start()
   }
 }

@@ -1,7 +1,5 @@
 'use strict'
 
-'use strict'
-
 import Phaser from 'phaser'
 
 export default class extends Phaser.Sprite {
@@ -15,7 +13,7 @@ export default class extends Phaser.Sprite {
     this.anchor.setTo(0.5, 0.5)
     this.scale.setTo(2, 2)
 
-  // enable Arcade physics:
+    // enable Arcade physics:
     game.physics.enable(this, Phaser.Physics.ARCADE)
   }
 }

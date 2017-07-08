@@ -3,11 +3,11 @@
 import Phaser from 'phaser'
 
 export default class extends Phaser.Sprite {
-  constructor ({ game, x, y, play }) {
+  constructor ({ game, x, y, playState }) {
     super(game, x, y, 'alien')
 
     // store reference to play state:
-    this.play = play
+    this.play = playState
 
     // define anchor and size:
     this.anchor.setTo(0.5, 0.5)

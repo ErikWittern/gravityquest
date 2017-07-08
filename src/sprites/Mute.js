@@ -1,37 +1,38 @@
 'use strict'
 
 import Phaser from 'phaser'
+import Utils from '../utils'
 
 export default class extends Phaser.Sprite {
-  constructor ({ game, x, y, asset }) {
-    super(game, x, y, asset)
+  constructor ({ game, x, y }) {
+    super(game, x, y, 'mute_button')
 
-  // define anchor and size:
+    // define anchor and size:
     this.anchor.setTo(0.5, 0.5)
     this.scale.setTo(2, 2)
     this.fixedToCamera = true
 
-  // define animations:
-    // this.animations.add('loud', [0])
-    // this.animations.add('mute', [1])
+    // define animations:
+    this.animations.add('loud', [0])
+    this.animations.add('mute', [1])
 
-  // define clickable area:
+    // define clickable area:
     this.btn = game.add.sprite(x, y, 'empty')
     this.btn.anchor.setTo(0.5, 0.5)
     this.btn.fixedToCamera = true
     this.btn.width = this.btn.height = 40
 
-  // define sounds:
+    // define sounds:
     this.menuSelectSound = game.add.audio('menu_select', 0.5, false)
 
-  // enable input:
+    // enable input:
     this.btn.inputEnabled = true
-    this.btn.events.onInputDown.add(function () {
+    this.btn.events.onInputDown.add(() => {
       this.toggleMuted()
-    }, this)
+    })
 
-  // set initial state:
-    if (this.getMuted() === true) {
+    // set initial state:
+    if (Utils.loadMuted() === true) {
       game.sound.mute = true
       this.animations.play('mute')
     } else {
@@ -42,34 +43,17 @@ export default class extends Phaser.Sprite {
   update () {}
 
   toggleMuted () {
-    let muted = this.getMuted()
+    let muted = Utils.loadMuted()
     if (muted === false) {
       muted = true
       this.game.sound.mute = true
       this.animations.play('mute')
-      this.setMuted(true)
+      Utils.storeMuted(true)
     } else {
       muted = false
       this.game.sound.mute = false
       this.animations.play('loud')
-      this.setMuted(false)
-    }
-  }
-
-  getMuted () {
-    if (typeof Storage !== 'undefined') {
-    //  localStorage.removeItem('gravity-gun');
-      var mute = JSON.parse(localStorage.getItem('gravityquest-muted'))
-      if (mute && typeof mute !== 'undefined') {
-        return mute
-      }
-      return false
-    }
-  }
-
-  setMuted (muted) {
-    if (typeof Storage !== 'undefined') {
-      localStorage.setItem('gravityquest-muted', muted)
+      Utils.storeMuted(false)
     }
   }
 }
