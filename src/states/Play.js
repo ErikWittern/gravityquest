@@ -428,7 +428,6 @@ export default class extends Phaser.State {
       let toRemove
       this.goodies.forEach((goody, i) => {
         if (this.collidesRectCircle(this.player, goody)) {
-          console.log('collision with', i)
           toRemove = i
           goody.collect()
           this.gq.collectedGoodies++
@@ -436,7 +435,6 @@ export default class extends Phaser.State {
         }
       })
       if (typeof toRemove === 'number') {
-        console.log('remove', toRemove)
         this.goodies.splice(toRemove, 1)
       }
     }

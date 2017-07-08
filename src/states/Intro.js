@@ -61,7 +61,7 @@ export default class extends Phaser.State {
 
     // add player:
     this.player = new Player({
-      game: this,
+      game: this.game,
       x: playerX,
       y: playerY,
       asset: 'player'
@@ -122,7 +122,7 @@ export default class extends Phaser.State {
     this.scene1()
 
     // setup menu button:
-    this.menuButton = this.game.add.button(config.gameWidht - 50, 10, 'menu_button', this.goToMenu, this)
+    this.menuButton = this.game.add.button(this.game.width - 50, 10, 'menu_button', this.goToMenu, this)
     this.menuButton.fixedToCamera = true
   }
 
@@ -287,6 +287,8 @@ export default class extends Phaser.State {
     overlay.endFill()
     this.game.time.events.add(Phaser.Timer.SECOND, () => {
       this.game.add.tween(overlay).to({alpha: 1}, 800, 'Linear', 0).start().onComplete.add(() => {
+        // done - play first level:
+        this.game.currentLevel = 1
         this.game.state.start('Play')
       })
     })
