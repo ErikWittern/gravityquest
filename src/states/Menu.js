@@ -122,12 +122,11 @@ export default class extends Phaser.State {
     })
 
     // add mute button:
-    this.mute = new Mute({
+    this.add.existing(new Mute({
       game: this.game,
-      x: this.world.width - 25,
-      y: this.world.height - 25
-    })
-    this.add.existing(this.mute)
+      x: this.game.width - 25,
+      y: this.game.height - 25
+    }))
 
     // show initial levels:
     this.showLevels()
@@ -274,7 +273,7 @@ export default class extends Phaser.State {
     // overlay:
     let overlay = this.add.graphics(0, 0)
     overlay.beginFill(0x000000, 1)
-    overlay.drawRect(0, 0, this.world.width, this.world.height)
+    overlay.drawRect(0, 0, this.game.width, this.game.height)
     overlay.alpha = 1
     overlay.endFill()
     this.add.tween(overlay).to({alpha: 0}, 800, 0).start()
