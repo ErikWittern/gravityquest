@@ -39,7 +39,7 @@ export default class extends Phaser.Sprite {
     return new Promise((resolve, reject) => {
       // add source:
       let source = this.game.add.sprite(this.x, this.y, 'target')
-      source.bringToTop()
+      this.bringToTop()
       source.scale.setTo(2, 2)
       source.anchor.setTo(0.5, 0.5)
       source.animations.add('spiral', [7, 6, 5, 4, 3, 2, 1, 9])
