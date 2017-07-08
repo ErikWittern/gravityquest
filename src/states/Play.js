@@ -526,10 +526,17 @@ export default class extends Phaser.State {
   }
 
   burnPlayer (message) {
-    this.game.playerControls = false
-    this.player.burn(function () {
-      this.pauseMenu = new PauseMenu(this.game, this, message, true)
-    }.bind(this))
+    // disable player controls:
+    this.gq.playerControls = false
+
+    this.player.burn(() => {
+      this.pauseMenu = new PauseMenu({
+        game: this.game,
+        playState: this,
+        message,
+        noResume: true
+      })
+    })
   }
 
   collidesRectCircle (rect, circle) {
