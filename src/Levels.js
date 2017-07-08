@@ -9,21 +9,21 @@ module.exports = [
       y: 800
     },
     player: {
-      x: 512,
-      y: 300,
+      x: 712,
+      y: 600,
       key: 'player'
     },
     asteroids: [
       {
-        x: 508,
-        y: 380,
+        x: 708,
+        y: 680,
         key: 'asteroid_32',
         radius: 16
       }
     ],
     target: {
-      x: 508,
-      y: 526,
+      x: 708,
+      y: 826,
       key: 'target',
       radius: 18
     },
@@ -68,61 +68,60 @@ module.exports = [
         }
       }
     },
-    numIntroScenes: 5,
     goodies: [
       {
-        x: 515,
-        y: 430
+        x: 715,
+        y: 730
       },
       {
-        x: 500,
-        y: 480
+        x: 700,
+        y: 780
       },
       {
-        x: 512,
-        y: 255
+        x: 712,
+        y: 555
       }
     ]
   },
   // Level 2: "Simpler intro to gravity slingshots" by Philippe Suter
   {
     player: {
-      x: 431,
-      y: 607,
+      x: 631,
+      y: 907,
       key: 'player'
     },
     asteroids: [
       {
-        x: 680,
-        y: 410,
+        x: 880,
+        y: 710,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 465,
-        y: 548,
+        x: 665,
+        y: 848,
         key: 'asteroid_32',
         radius: 16
       }
     ],
     target: {
-      x: 606,
-      y: 307,
+      x: 806,
+      y: 607,
       key: 'target',
       radius: 18
     },
     goodies: [
       {
-        x: 687,
-        y: 514
+        x: 887,
+        y: 814
       },
       {
-        x: 776,
-        y: 361
+        x: 976,
+        y: 661
       },
       {
-        x: 517,
-        y: 460
+        x: 717,
+        y: 760
       }
     ],
     maxDistance: 250
@@ -130,21 +129,21 @@ module.exports = [
   // Level 3:
   {
     player: {
-      x: 345,
-      y: 209,
+      x: 545,
+      y: 509,
       key: 'player'
     },
     asteroids: [
       {
-        x: 514,
-        y: 314,
+        x: 714,
+        y: 614,
         key: 'asteroid_32',
         radius: 16
       }
     ],
     target: {
-      x: 287,
-      y: 171,
+      x: 487,
+      y: 371,
       key: 'target',
       radius: 18
     },
@@ -152,116 +151,117 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 317,
-        y: 193
+        x: 517,
+        y: 493
       },
       {
-        x: 450,
-        y: 271
+        x: 650,
+        y: 571
       },
       {
-        x: 700,
-        y: 430
+        x: 900,
+        y: 730
       }
     ]
   },
   // Level 4:
   {
     player: {
-      x: 481,
-      y: 280,
+      x: 681,
+      y: 580,
       key: 'player'
     },
     asteroids: [
       {
-        x: 473,
-        y: 381,
+        x: 673,
+        y: 681,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 536,
-        y: 521,
+        x: 736,
+        y: 821,
         key: 'asteroid_32',
         radius: 16
       }
     ],
     target: {
-      x: 374,
-      y: 564,
+      x: 574,
+      y: 864,
       key: 'target',
       radius: 18
     },
     novae: [
       {
-        x: 440,
-        y: 320,
+        x: 640,
+        y: 620,
         key: 'nova_32',
         radius: '16'
       },
       {
-        x: 538,
-        y: 620,
+        x: 738,
+        y: 920,
         key: 'nova_32',
         radius: '16'
       }
     ],
     goodies: [
       {
-        x: 578,
-        y: 574
+        x: 778,
+        y: 874
       },
       {
-        x: 701,
-        y: 474
+        x: 901,
+        y: 774
       },
       {
-        x: 528,
-        y: 473
+        x: 728,
+        y: 773
       }
     ],
     maxDistance: 250,
-    intro: function (game, x, y, scene) {
-      if (scene === 1) {
-        game.playerControls = false
-        this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
-        this.text = game.add.bitmapText(x + 8, y - 74, 'font_black_12', '\n   Dwarf novae!', 12)
-      } else if (scene === 2) {
-        this.text.setText('Pure, burning\nhydrogen. Better\nkeep my distance...')
-      } else if (scene === 3) {
-        if (this.bubble) {
-          this.bubble.destroy()
+    intro: {
+      numScenes: 5,
+      playScene (game, x, y, scene) {
+        if (scene === 1) {
+          this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
+          this.text = game.add.bitmapText(x + 8, y - 74, 'font_black_12', '\n   Dwarf novae!', 12)
+        } else if (scene === 2) {
+          this.text.setText('Pure, burning\nhydrogen. Better\nkeep my distance...')
+        } else if (scene === 3) {
+          if (this.bubble) {
+            this.bubble.destroy()
+          }
+          if (this.text) {
+            this.text.destroy()
+          }
         }
-        if (this.text) {
-          this.text.destroy()
-        }
-        game.playerControls = true
       }
     }
   },
   // Level 5:
   {
     player: {
-      x: 600,
-      y: 600,
+      x: 800,
+      y: 900,
       key: 'player'
     },
     target: {
-      x: 600,
-      y: 300,
+      x: 800,
+      y: 600,
       key: 'target',
       radius: 18
     },
     asteroids: [
       {
-        x: 700,
-        y: 500,
+        x: 900,
+        y: 800,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 680,
-        y: 400,
+        x: 880,
+        y: 700,
         key: 'asteroid_64',
         radius: 32
       }
@@ -270,48 +270,48 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 570,
-        y: 264
+        x: 770,
+        y: 564
       },
       {
-        x: 741,
-        y: 451
+        x: 941,
+        y: 751
       },
       {
-        x: 711,
-        y: 294
+        x: 911,
+        y: 394
       }
     ]
   },
   // Level 6:
   {
     player: {
-      x: 600,
-      y: 600,
+      x: 800,
+      y: 900,
       key: 'player'
     },
     target: {
-      x: 600,
-      y: 670,
+      x: 800,
+      y: 970,
       key: 'target',
       radius: 18
     },
     asteroids: [
       {
-        x: 500,
-        y: 500,
+        x: 600,
+        y: 800,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 485,
-        y: 400,
+        x: 685,
+        y: 700,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 630,
-        y: 400,
+        x: 830,
+        y: 700,
         key: 'asteroid_64',
         radius: 32
       }
@@ -320,162 +320,163 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 723,
-        y: 393
+        x: 923,
+        y: 693
       },
       {
-        x: 537,
-        y: 274
+        x: 737,
+        y: 574
       },
       {
-        x: 644,
-        y: 576
+        x: 844,
+        y: 876
       }
     ],
-    intro: function (game, x, y, scene) {
-      if (scene == 1) {
-        game.playerControls = false
-        this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
-        this.text = game.add.bitmapText(x + 30, y - 68, 'font_black_12', 'So close...\nYet so far...', 12)
-      } else if (scene == 2) {
-        if (this.bubble) {
-          this.bubble.destroy()
+    intro: {
+      numScenes: 2,
+      playScene (game, x, y, scene) {
+        if (scene === 1) {
+          this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
+          this.text = game.add.bitmapText(x + 30, y - 68, 'font_black_12', 'So close...\nYet so far...', 12)
+        } else if (scene === 2) {
+          if (this.bubble) {
+            this.bubble.destroy()
+          }
+          if (this.text) {
+            this.text.destroy()
+          }
         }
-        if (this.text) {
-          this.text.destroy()
-        }
-        game.playerControls = true
       }
     }
   },
   // Level 7:
   {
     player: {
-      x: 417,
-      y: 381,
+      x: 617,
+      y: 681,
       key: 'player'
     },
     asteroids: [
       {
-        x: 474,
-        y: 381,
+        x: 674,
+        y: 681,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 560,
-        y: 333,
+        x: 760,
+        y: 633,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 273,
-        y: 451,
+        x: 473,
+        y: 751,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 281,
-        y: 277,
+        x: 481,
+        y: 577,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 119,
-        y: 565,
+        x: 319,
+        y: 865,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 389,
-        y: 242,
+        x: 589,
+        y: 542,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 732,
-        y: 407,
+        x: 932,
+        y: 707,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 442,
-        y: 517,
+        x: 642,
+        y: 817,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       }
     ],
     target: {
-      x: 244,
-      y: 641,
+      x: 444,
+      y: 941,
       key: 'target',
       radius: 18
     },
     novae: [
       {
-        x: 440,
-        y: 330,
+        x: 640,
+        y: 630,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 372,
-        y: 327,
+        x: 572,
+        y: 627,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 270,
-        y: 388,
+        x: 470,
+        y: 688,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 551,
-        y: 243,
+        x: 751,
+        y: 543,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 280,
-        y: 531,
+        x: 480,
+        y: 831,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 341,
-        y: 516,
+        x: 541,
+        y: 816,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 202,
-        y: 558,
+        x: 402,
+        y: 858,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 304,
-        y: 158,
-        key: 'nova_64',
-        radius: 32
-      },
-      {
-        x: 491,
+        x: 504,
         y: 458,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 114,
-        y: 654,
+        x: 691,
+        y: 758,
+        key: 'nova_64',
+        radius: 32
+      },
+      {
+        x: 314,
+        y: 954,
         key: 'nova_32',
         radius: 16
       }
@@ -483,16 +484,16 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 62,
-        y: 552
+        x: 262,
+        y: 852
       },
       {
-        x: 319,
-        y: 362
+        x: 519,
+        y: 662
       },
       {
-        x: 558,
-        y: 288
+        x: 758,
+        y: 588
       }
     ],
     antiForceFields: []
@@ -500,32 +501,32 @@ module.exports = [
   // Level 8:
   {
     player: {
-      x: 600,
-      y: 630,
+      x: 800,
+      y: 930,
       key: 'player'
     },
     target: {
-      x: 588,
-      y: 336,
+      x: 788,
+      y: 636,
       key: 'target',
       radius: 18
     },
     asteroids: [
       {
-        x: 596,
-        y: 559,
+        x: 796,
+        y: 859,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 546,
-        y: 499,
+        x: 746,
+        y: 799,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 589,
-        y: 411,
+        x: 789,
+        y: 711,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
@@ -535,31 +536,32 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 590,
-        y: 372
+        x: 790,
+        y: 672
       },
       {
-        x: 628,
-        y: 413
+        x: 828,
+        y: 713
       },
       {
-        x: 542,
-        y: 399
+        x: 742,
+        y: 699
       }
     ],
-    intro: function (game, x, y, scene) {
-      if (scene == 1) {
-        game.playerControls = false
-        this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
-        this.text = game.add.bitmapText(x + 20, y - 72, 'font_black_12', 'Thermo-active\nasteroids...\nYikes!', 12)
-      } else if (scene == 2) {
-        if (this.bubble) {
-          this.bubble.destroy()
+    intro: {
+      numScenes: 2,
+      playScene (game, x, y, scene) {
+        if (scene === 1) {
+          this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
+          this.text = game.add.bitmapText(x + 20, y - 72, 'font_black_12', 'Thermo-active\nasteroids...\nYikes!', 12)
+        } else if (scene === 2) {
+          if (this.bubble) {
+            this.bubble.destroy()
+          }
+          if (this.text) {
+            this.text.destroy()
+          }
         }
-        if (this.text) {
-          this.text.destroy()
-        }
-        game.playerControls = true
       }
     }
   },
@@ -570,34 +572,34 @@ module.exports = [
       y: 800
     },
     player: {
-      x: 602,
-      y: 328,
+      x: 802,
+      y: 628,
       key: 'player'
     },
     target: {
-      x: 527,
-      y: 691,
+      x: 727,
+      y: 991,
       key: 'target',
       radius: 18
     },
     asteroids: [
       {
-        x: 594,
-        y: 381,
+        x: 794,
+        y: 681,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 493,
-        y: 474,
+        x: 693,
+        y: 774,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 529,
-        y: 621,
+        x: 729,
+        y: 921,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
@@ -605,26 +607,26 @@ module.exports = [
     ],
     novae: [
       {
-        x: 532,
-        y: 488,
+        x: 732,
+        y: 788,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 570,
-        y: 546,
+        x: 770,
+        y: 846,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 451,
-        y: 538,
+        x: 651,
+        y: 838,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 459,
-        y: 615,
+        x: 659,
+        y: 915,
         key: 'nova_32',
         radius: 16
       }
@@ -632,65 +634,65 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 397,
-        y: 593
+        x: 597,
+        y: 893
       },
       {
-        x: 433,
-        y: 468
+        x: 633,
+        y: 768
       },
       {
-        x: 494,
-        y: 661
+        x: 694,
+        y: 961
       }
     ]
   },
   // Level 10:
   {
     player: {
-      x: 452,
-      y: 628,
+      x: 652,
+      y: 928,
       key: 'player'
     },
     asteroids: [
       {
-        x: 442,
-        y: 564,
+        x: 642,
+        y: 864,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 346,
-        y: 299,
+        x: 546,
+        y: 599,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 482,
-        y: 472,
+        x: 682,
+        y: 772,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 685,
-        y: 416,
+        x: 885,
+        y: 716,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 655,
-        y: 284,
+        x: 855,
+        y: 584,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       }
     ],
     target: {
-      x: 537,
-      y: 188,
+      x: 737,
+      y: 488,
       key: 'target',
       radius: 18
     },
@@ -698,16 +700,16 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 349,
-        y: 217
+        x: 549,
+        y: 517
       },
       {
-        x: 628,
-        y: 495
+        x: 828,
+        y: 795
       },
       {
-        x: 711,
-        y: 242
+        x: 911,
+        y: 542
       }
     ],
     antiForceFields: []
@@ -718,34 +720,34 @@ module.exports = [
       x: 0
     },
     player: {
-      x: 604,
-      y: 332,
+      x: 804,
+      y: 632,
       key: 'player'
     },
     target: {
-      x: 619,
-      y: 448,
+      x: 819,
+      y: 748,
       key: 'target',
       radius: 18
     },
     asteroids: [
       {
-        x: 511,
-        y: 333,
+        x: 711,
+        y: 633,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 426,
-        y: 396,
+        x: 626,
+        y: 696,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 526,
-        y: 447,
+        x: 726,
+        y: 747,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
@@ -753,26 +755,26 @@ module.exports = [
     ],
     novae: [
       {
-        x: 375,
-        y: 452,
+        x: 575,
+        y: 752,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 329,
-        y: 370,
+        x: 529,
+        y: 670,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 554,
-        y: 520,
+        x: 754,
+        y: 820,
         key: 'nova_32',
         radius: '16'
       },
       {
-        x: 354,
-        y: 504,
+        x: 554,
+        y: 804,
         key: 'nova_32',
         radius: '16'
       }
@@ -780,16 +782,16 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 348,
-        y: 388
+        x: 548,
+        y: 688
       },
       {
-        x: 346,
-        y: 549
+        x: 546,
+        y: 849
       },
       {
-        x: 541,
-        y: 483
+        x: 741,
+        y: 783
       }
     ]
   },
@@ -800,26 +802,26 @@ module.exports = [
       y: 1000
     },
     player: {
-      x: 512,
-      y: 220,
+      x: 712,
+      y: 520,
       key: 'player'
     },
     target: {
-      x: 490,
-      y: 550,
+      x: 690,
+      y: 750,
       key: 'target',
       radius: 18
     },
     asteroids: [
       {
-        x: 512,
-        y: 270,
+        x: 712,
+        y: 570,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 480,
-        y: 350,
+        x: 680,
+        y: 650,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
@@ -827,16 +829,16 @@ module.exports = [
     ],
     novae: [
       {
-        x: 500,
-        y: 440,
+        x: 700,
+        y: 740,
         key: 'nova_64',
         radius: 32
       }
     ],
     antiForceFields: [
       {
-        x: 380,
-        y: 450,
+        x: 580,
+        y: 750,
         radius: 48,
         key: 'antiForceField_96'
       }
@@ -844,31 +846,32 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 505,
-        y: 59
+        x: 705,
+        y: 359
       },
       {
-        x: 456,
-        y: 402
+        x: 656,
+        y: 702
       },
       {
-        x: 449,
-        y: 510
+        x: 649,
+        y: 810
       }
     ],
-    intro: function (game, x, y, scene) {
-      if (scene == 1) {
-        game.playerControls = false
-        this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
-        this.text = game.add.bitmapText(x + 8, y - 72, 'font_black_12', 'Anti-gravi-\ntational force\nfields! Nifty!', 12)
-      } else if (scene == 2) {
-        if (this.bubble) {
-          this.bubble.destroy()
+    intro: {
+      numScenes: 2,
+      playScene (game, x, y, scene) {
+        if (scene === 1) {
+          this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
+          this.text = game.add.bitmapText(x + 8, y - 72, 'font_black_12', 'Anti-gravi-\ntational force\nfields! Nifty!', 12)
+        } else if (scene === 2) {
+          if (this.bubble) {
+            this.bubble.destroy()
+          }
+          if (this.text) {
+            this.text.destroy()
+          }
         }
-        if (this.text) {
-          this.text.destroy()
-        }
-        game.playerControls = true
       }
     }
   },
@@ -879,13 +882,13 @@ module.exports = [
       y: 800
     },
     player: {
-      x: 528,
-      y: 367,
+      x: 728,
+      y: 667,
       key: 'player'
     },
     target: {
-      x: 527,
-      y: 691,
+      x: 727,
+      y: 991,
       key: 'target',
       radius: 18
     },
@@ -894,15 +897,15 @@ module.exports = [
     aliens: [],
     asteroids: [
       {
-        x: 531,
-        y: 434,
+        x: 731,
+        y: 734,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 680,
-        y: 557,
+        x: 880,
+        y: 857,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
@@ -910,65 +913,65 @@ module.exports = [
     ],
     novae: [
       {
-        x: 517,
-        y: 627,
+        x: 717,
+        y: 927,
         key: 'nova_64',
         radius: 32
       }
     ],
     goodies: [
       {
-        x: 787,
-        y: 552
+        x: 987,
+        y: 852
       },
       {
-        x: 459,
-        y: 536
+        x: 659,
+        y: 836
       },
       {
-        x: 666,
-        y: 509
+        x: 866,
+        y: 809
       }
     ]
   },
   // Level 14: by Philippe Suter:
   {
     player: {
-      x: 390,
-      y: 232,
+      x: 590,
+      y: 532,
       key: 'player'
     },
     target: {
-      x: 475,
-      y: 250,
+      x: 675,
+      y: 550,
       key: 'target',
       radius: 18
     },
     asteroids: [
       {
-        x: 346,
-        y: 397,
+        x: 546,
+        y: 697,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 508,
-        y: 394,
+        x: 708,
+        y: 694,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 264,
-        y: 235,
+        x: 464,
+        y: 535,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 668,
-        y: 300,
+        x: 868,
+        y: 600,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
@@ -976,58 +979,58 @@ module.exports = [
     ],
     antiForceFields: [
       {
-        x: 327,
-        y: 208,
+        x: 527,
+        y: 508,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 288,
-        y: 506,
+        x: 488,
+        y: 806,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 471,
-        y: 551,
+        x: 671,
+        y: 851,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 772,
-        y: 218,
+        x: 972,
+        y: 518,
         key: 'antiForceField_96',
         radius: 48
       }
     ],
     novae: [
       {
-        x: 428,
-        y: 236,
+        x: 628,
+        y: 536,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 443,
-        y: 286,
+        x: 643,
+        y: 386,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 490,
-        y: 295,
+        x: 690,
+        y: 595,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 506,
-        y: 191,
+        x: 706,
+        y: 491,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 452,
-        y: 187,
+        x: 652,
+        y: 487,
         key: 'nova_64',
         radius: 32
       }
@@ -1035,16 +1038,16 @@ module.exports = [
     aliens: [],
     goodies: [
       {
-        x: 339,
-        y: 468
+        x: 539,
+        y: 768
       },
       {
-        x: 466,
-        y: 494
+        x: 666,
+        y: 794
       },
       {
-        x: 753,
-        y: 329
+        x: 953,
+        y: 629
       }
     ],
     maxDistance: 250
@@ -1052,130 +1055,131 @@ module.exports = [
   // Level 15:
   {
     player: {
-      x: 480,
-      y: 70,
+      x: 680,
+      y: 370,
       key: 'player'
     },
     asteroids: [
       {
-        x: 478,
-        y: 221,
+        x: 678,
+        y: 521,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 558,
-        y: 411,
+        x: 758,
+        y: 711,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 714,
-        y: 463,
+        x: 914,
+        y: 763,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       }
     ],
     target: {
-      x: 742,
-      y: 581,
+      x: 942,
+      y: 881,
       key: 'target',
       radius: 18
     },
     novae: [],
     aliens: [
       {
-        x: 401,
-        y: 229
+        x: 601,
+        y: 529
       },
       {
-        x: 557,
-        y: 229
+        x: 757,
+        y: 529
       },
       {
-        x: 939,
-        y: 378,
+        x: 1139,
+        y: 678,
         key: 'alien'
       }
     ],
     maxDistance: 250,
     goodies: [
       {
-        x: 478,
-        y: 288
+        x: 678,
+        y: 588
       },
       {
-        x: 552,
-        y: 463
+        x: 752,
+        y: 763
       },
       {
-        x: 816,
-        y: 441
+        x: 1016,
+        y: 741
       }
     ],
-    intro: function (game, x, y, scene) {
-      if (scene == 1) {
-        game.playerControls = false
-        this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
-        this.text = game.add.bitmapText(x + 10, y - 68, 'font_black_12', 'UFOs?! You\ngotta be kidding...', 12)
-      } else if (scene == 2) {
-        if (this.bubble) {
-          this.bubble.destroy()
+    intro: {
+      numScenes: 2,
+      playScene (game, x, y, scene) {
+        if (scene === 1) {
+          this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
+          this.text = game.add.bitmapText(x + 10, y - 68, 'font_black_12', 'UFOs?! You\ngotta be kidding...', 12)
+        } else if (scene === 2) {
+          if (this.bubble) {
+            this.bubble.destroy()
+          }
+          if (this.text) {
+            this.text.destroy()
+          }
         }
-        if (this.text) {
-          this.text.destroy()
-        }
-        game.playerControls = true
       }
     }
   },
   // Level 16: "Speed" by Beni Dietz
   {
     player: {
-      x: 468,
-      y: 49,
+      x: 668,
+      y: 349,
       key: 'player'
     },
     asteroids: [
       {
-        x: 466,
-        y: 102,
+        x: 666,
+        y: 402,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 437,
-        y: 355,
+        x: 637,
+        y: 655,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 425,
-        y: 545,
+        x: 625,
+        y: 745,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 438,
-        y: 752,
+        x: 638,
+        y: 1052,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 447,
-        y: 185,
+        x: 647,
+        y: 485,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       }
     ],
     target: {
-      x: 473,
-      y: 918,
+      x: 673,
+      y: 1218,
       key: 'target',
       radius: 18
     },
@@ -1183,37 +1187,37 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 408,
-        y: 703
+        x: 608,
+        y: 1003
       },
       {
-        x: 410,
-        y: 315
+        x: 610,
+        y: 615
       },
       {
-        x: 462,
-        y: 497
+        x: 662,
+        y: 797
       }
     ],
     aliens: [
       {
-        x: 490,
-        y: 832,
+        x: 690,
+        y: 1132,
         key: 'alien'
       },
       {
-        x: 375,
-        y: 626,
+        x: 575,
+        y: 926,
         key: 'alien'
       },
       {
-        x: 506,
-        y: 448,
+        x: 706,
+        y: 748,
         key: 'alien'
       },
       {
-        x: 377,
-        y: 240,
+        x: 577,
+        y: 540,
         key: 'alien'
       }
     ]
@@ -1221,55 +1225,55 @@ module.exports = [
   // Level 17:
   {
     player: {
-      x: 124,
-      y: 435,
+      x: 324,
+      y: 735,
       key: 'player'
     },
     target: {
-      x: 707,
-      y: 244,
+      x: 907,
+      y: 544,
       key: 'target',
       radius: 18
     },
     asteroids: [
       {
-        x: 205,
-        y: 424,
+        x: 405,
+        y: 724,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 301,
-        y: 492,
+        x: 501,
+        y: 792,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 451,
-        y: 513,
+        x: 651,
+        y: 813,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 608,
-        y: 502,
+        x: 808,
+        y: 802,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 447,
-        y: 317,
+        x: 647,
+        y: 617,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 627,
-        y: 399,
+        x: 827,
+        y: 799,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
@@ -1277,64 +1281,64 @@ module.exports = [
     ],
     antiForceFields: [
       {
-        x: 763,
-        y: 469,
+        x: 963,
+        y: 769,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 328,
-        y: 605,
+        x: 528,
+        y: 905,
         key: 'antiForceField_96',
         radius: 48
       }
     ],
     novae: [
       {
-        x: 386,
-        y: 401,
+        x: 586,
+        y: 701,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 507,
-        y: 453,
+        x: 707,
+        y: 753,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 589,
-        y: 581,
+        x: 789,
+        y: 881,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 631,
-        y: 551,
+        x: 831,
+        y: 851,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 653,
-        y: 506,
+        x: 853,
+        y: 806,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 583,
-        y: 368,
+        x: 783,
+        y: 668,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 674,
-        y: 378,
+        x: 874,
+        y: 678,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 635,
-        y: 314,
+        x: 835,
+        y: 614,
         key: 'nova_64',
         radius: 32
       }
@@ -1343,44 +1347,44 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 444,
-        y: 425
+        x: 644,
+        y: 725
       },
       {
-        x: 421,
-        y: 350
+        x: 621,
+        y: 650
       },
       {
-        x: 725,
-        y: 330
+        x: 925,
+        y: 630
       }
     ]
   },
   // Level 18: "Trust" by Beni Dietz
   {
     player: {
-      x: 512,
-      y: 300,
+      x: 712,
+      y: 600,
       key: 'player'
     },
     asteroids: [
       {
-        x: 508,
-        y: 380,
+        x: 708,
+        y: 680,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 407,
-        y: 630,
+        x: 607,
+        y: 930,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       }
     ],
     target: {
-      x: 422,
-      y: 882,
+      x: 622,
+      y: 1182,
       key: 'target',
       radius: 18
     },
@@ -1388,46 +1392,46 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 519,
-        y: 577
+        x: 719,
+        y: 877
       },
       {
-        x: 318,
-        y: 584
+        x: 518,
+        y: 884
       },
       {
-        x: 606,
-        y: 396
+        x: 806,
+        y: 696
       }
     ],
     antiForceFields: [
       {
-        x: 547,
-        y: 520,
+        x: 747,
+        y: 820,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 308,
-        y: 700,
+        x: 508,
+        y: 1000,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 301,
-        y: 788,
+        x: 501,
+        y: 1088,
         key: 'antiForceField_64',
         radius: 32
       },
       {
-        x: 414,
-        y: 743,
+        x: 614,
+        y: 1043,
         key: 'antiForceField_64',
         radius: 32
       },
       {
-        x: 336,
-        y: 877,
+        x: 536,
+        y: 1177,
         key: 'antiForceField_64',
         radius: 32
       }
@@ -1439,28 +1443,28 @@ module.exports = [
       y: 800
     },
     player: {
-      x: 592,
-      y: 269,
+      x: 792,
+      y: 569,
       key: 'player'
     },
     forceFields: [
       {
-        x: 508,
-        y: 420,
+        x: 708,
+        y: 720,
         key: 'forceField_32',
         radius: 16
       },
       {
-        x: 362,
-        y: 550,
+        x: 562,
+        y: 850,
         key: 'forceField_64',
         radius: 32,
         enemy: false
       }
     ],
     target: {
-      x: 508,
-      y: 526,
+      x: 708,
+      y: 826,
       key: 'target',
       radius: 18
     },
@@ -1468,54 +1472,54 @@ module.exports = [
     maxDistance: 250,
     antiForceFields: [
       {
-        x: 383,
-        y: 463,
+        x: 583,
+        y: 763,
         key: 'antiForceField_64',
         radius: 32
       }
     ],
     aliens: [
       {
-        x: 597,
-        y: 527,
+        x: 797,
+        y: 827,
         key: 'alien'
       },
       {
-        x: 828,
-        y: 515,
+        x: 1028,
+        y: 815,
         key: 'alien'
       },
       {
-        x: 669,
-        y: 754,
+        x: 869,
+        y: 1054,
         key: 'alien'
       }
     ],
     asteroids: [
       {
-        x: 388,
-        y: 638,
+        x: 588,
+        y: 938,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 653,
-        y: 473,
+        x: 853,
+        y: 773,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 776,
-        y: 647,
+        x: 976,
+        y: 947,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 553,
-        y: 660,
+        x: 753,
+        y: 960,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
@@ -1523,30 +1527,30 @@ module.exports = [
     ],
     novae: [
       {
-        x: 774,
-        y: 454,
+        x: 974,
+        y: 754,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 669,
-        y: 635,
+        x: 869,
+        y: 935,
         key: 'nova_32',
         radius: 16
       }
     ],
     goodies: [
       {
-        x: 447,
-        y: 452
+        x: 647,
+        y: 752
       },
       {
-        x: 967,
-        y: 656
+        x: 1167,
+        y: 956
       },
       {
-        x: 774,
-        y: 688
+        x: 974,
+        y: 988
       }
     ]
   },
@@ -1556,28 +1560,28 @@ module.exports = [
       y: 800
     },
     player: {
-      x: 144,
-      y: 34,
+      x: 344,
+      y: 334,
       key: 'player'
     },
     forceFields: [
       {
-        x: 508,
-        y: 420,
+        x: 708,
+        y: 720,
         key: 'forceField_32',
         radius: 16
       },
       {
-        x: 362,
-        y: 550,
+        x: 562,
+        y: 850,
         key: 'forceField_64',
         radius: 32,
         enemy: false
       }
     ],
     target: {
-      x: 781,
-      y: 858,
+      x: 981,
+      y: 1158,
       key: 'target',
       radius: 18
     },
@@ -1587,176 +1591,176 @@ module.exports = [
     aliens: [],
     asteroids: [
       {
-        x: 236,
-        y: 69,
+        x: 436,
+        y: 369,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 844,
-        y: 103,
+        x: 1044,
+        y: 403,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 280,
-        y: 203,
+        x: 480,
+        y: 503,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 433,
-        y: 53,
+        x: 633,
+        y: 353,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 583,
-        y: 402,
+        x: 783,
+        y: 702,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 604,
-        y: 74,
+        x: 804,
+        y: 374,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 387,
-        y: 172,
+        x: 587,
+        y: 472,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 166,
-        y: 177,
+        x: 366,
+        y: 477,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 511,
-        y: 166,
+        x: 711,
+        y: 466,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 581,
-        y: 28,
+        x: 781,
+        y: 328,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 602,
-        y: 290,
+        x: 802,
+        y: 590,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 815,
-        y: 216,
+        x: 1015,
+        y: 516,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 685,
-        y: 402,
+        x: 885,
+        y: 702,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 925,
-        y: 281,
+        x: 1125,
+        y: 581,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 987,
-        y: 38,
+        x: 1187,
+        y: 338,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 922,
-        y: 501,
+        x: 1122,
+        y: 801,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
+      },
+      {
+        x: 952,
+        y: 812,
+        key: 'thermoAsteroid_32',
+        radius: 16,
+        enemy: true
+      },
+      {
+        x: 931,
+        y: 341,
+        key: 'thermoAsteroid_32',
+        radius: 16,
+        enemy: true
+      },
+      {
+        x: 896,
+        y: 1284,
+        key: 'thermoAsteroid_64',
+        radius: 32,
+        enemy: true
+      },
+      {
+        x: 973,
+        y: 945,
+        key: 'asteroid_64',
+        radius: 32,
+        enemy: false
+      },
+      {
+        x: 1013,
+        y: 1059,
+        key: 'thermoAsteroid_32',
+        radius: 16,
+        enemy: true
+      },
+      {
+        x: 644,
+        y: 616,
+        key: 'thermoAsteroid_32',
+        radius: 16,
+        enemy: true
+      },
+      {
+        x: 770,
+        y: 833,
+        key: 'thermoAsteroid_32',
+        radius: 16,
+        enemy: true
       },
       {
         x: 752,
-        y: 512,
-        key: 'thermoAsteroid_32',
-        radius: 16,
-        enemy: true
-      },
-      {
-        x: 731,
-        y: 41,
-        key: 'thermoAsteroid_32',
-        radius: 16,
-        enemy: true
-      },
-      {
-        x: 696,
-        y: 984,
+        y: 1043,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 773,
-        y: 645,
-        key: 'asteroid_64',
-        radius: 32,
-        enemy: false
-      },
-      {
-        x: 813,
-        y: 759,
-        key: 'thermoAsteroid_32',
-        radius: 16,
-        enemy: true
-      },
-      {
-        x: 444,
-        y: 316,
-        key: 'thermoAsteroid_32',
-        radius: 16,
-        enemy: true
-      },
-      {
-        x: 570,
-        y: 533,
-        key: 'thermoAsteroid_32',
-        radius: 16,
-        enemy: true
-      },
-      {
-        x: 552,
-        y: 743,
-        key: 'thermoAsteroid_64',
-        radius: 32,
-        enemy: true
-      },
-      {
-        x: 857,
-        y: 366,
+        x: 1057,
+        y: 666,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
@@ -1764,105 +1768,105 @@ module.exports = [
     ],
     novae: [
       {
-        x: 1,
-        y: 11,
+        x: 201,
+        y: 311,
         key: 'nova_64',
         radius: 32
       }
     ],
     goodies: [
       {
-        x: 479,
-        y: 90
+        x: 679,
+        y: 390
       },
       {
-        x: 786,
-        y: 30
+        x: 986,
+        y: 330
       },
       {
-        x: 502,
-        y: 518
+        x: 702,
+        y: 818
       }
     ]
   },
   // Level 21:
   {
     player: {
-      x: 217,
-      y: 423,
+      x: 417,
+      y: 723,
       key: 'player'
     },
     asteroids: [
       {
-        x: 316,
-        y: 580,
+        x: 516,
+        y: 880,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 243,
-        y: 498,
+        x: 443,
+        y: 798,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 555,
-        y: 383,
+        x: 755,
+        y: 683,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 433,
-        y: 208,
+        x: 633,
+        y: 508,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 313,
-        y: 214,
+        x: 513,
+        y: 514,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 316,
-        y: 255,
+        x: 516,
+        y: 555,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       }
     ],
     target: {
-      x: 217,
-      y: 253,
+      x: 417,
+      y: 553,
       key: 'target',
       radius: 18
     },
     novae: [
       {
-        x: 490,
-        y: 518,
+        x: 690,
+        y: 818,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 514,
-        y: 336,
+        x: 714,
+        y: 636,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 491,
-        y: 198,
+        x: 691,
+        y: 498,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 347,
-        y: 299,
+        x: 547,
+        y: 599,
         key: 'nova_64',
         radius: 32
       }
@@ -1870,28 +1874,28 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 505,
-        y: 268
+        x: 705,
+        y: 568
       },
       {
-        x: 492,
-        y: 439
+        x: 692,
+        y: 739
       },
       {
-        x: 398,
-        y: 517
+        x: 598,
+        y: 817
       }
     ],
     antiForceFields: [
       {
-        x: 386,
-        y: 431,
+        x: 586,
+        y: 731,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 641,
-        y: 263,
+        x: 841,
+        y: 563,
         key: 'antiForceField_96',
         radius: 48
       }
@@ -1900,77 +1904,77 @@ module.exports = [
   // Level 22: "The stupid snail (not very proud of it...)" by Gregory Katsaros
   {
     player: {
-      x: 182,
-      y: 226,
+      x: 382,
+      y: 526,
       key: 'player'
     },
     asteroids: [
       {
-        x: 175,
-        y: 124,
+        x: 375,
+        y: 424,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 334,
-        y: 896,
+        x: 534,
+        y: 1196,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 591,
+        x: 791,
+        y: 1227,
+        key: 'asteroid_64',
+        radius: 32,
+        enemy: false
+      },
+      {
+        x: 1064,
         y: 927,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 864,
-        y: 627,
-        key: 'asteroid_64',
-        radius: 32,
-        enemy: false
-      },
-      {
-        x: 788,
-        y: 835,
+        x: 988,
+        y: 1135,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 74,
-        y: 475,
+        x: 274,
+        y: 775,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 172,
-        y: 740,
+        x: 372,
+        y: 1040,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 723,
-        y: 469,
+        x: 923,
+        y: 769,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 515,
-        y: 532,
+        x: 715,
+        y: 832,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       }
     ],
     target: {
-      x: 628,
-      y: 678,
+      x: 828,
+      y: 978,
       key: 'target',
       radius: 18
     },
@@ -1978,126 +1982,126 @@ module.exports = [
     maxDistance: 250,
     antiForceFields: [
       {
-        x: 146,
-        y: 419,
-        key: 'antiForceField_96',
-        radius: 48
-      },
-      {
-        x: 284,
-        y: 748,
-        key: 'antiForceField_96',
-        radius: 48
-      },
-      {
-        x: 163,
-        y: 514,
-        key: 'antiForceField_96',
-        radius: 48
-      },
-      {
-        x: 195,
-        y: 599,
-        key: 'antiForceField_96',
-        radius: 48
-      },
-      {
-        x: 232,
-        y: 678,
-        key: 'antiForceField_96',
-        radius: 48
-      },
-      {
-        x: 703,
-        y: 810,
-        key: 'antiForceField_96',
-        radius: 48
-      },
-      {
-        x: 772,
-        y: 748,
-        key: 'antiForceField_96',
-        radius: 48
-      },
-      {
-        x: 613,
-        y: 838,
-        key: 'antiForceField_96',
-        radius: 48
-      },
-      {
-        x: 524,
-        y: 844,
-        key: 'antiForceField_96',
-        radius: 48
-      },
-      {
-        x: 128,
-        y: 342,
-        key: 'antiForceField_64',
-        radius: 32
-      },
-      {
-        x: 543,
-        y: 586,
-        key: 'antiForceField_64',
-        radius: 32
-      },
-      {
-        x: 582,
-        y: 547,
-        key: 'antiForceField_64',
-        radius: 32
-      },
-      {
-        x: 603,
-        y: 599,
-        key: 'antiForceField_64',
-        radius: 32
-      },
-      {
         x: 346,
-        y: 807,
+        y: 719,
+        key: 'antiForceField_96',
+        radius: 48
+      },
+      {
+        x: 484,
+        y: 1048,
+        key: 'antiForceField_96',
+        radius: 48
+      },
+      {
+        x: 363,
+        y: 814,
+        key: 'antiForceField_96',
+        radius: 48
+      },
+      {
+        x: 395,
+        y: 899,
         key: 'antiForceField_96',
         radius: 48
       },
       {
         x: 432,
-        y: 839,
+        y: 978,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 770,
-        y: 656,
+        x: 903,
+        y: 1110,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 741,
-        y: 576,
+        x: 972,
+        y: 1048,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 657,
-        y: 533,
+        x: 813,
+        y: 1138,
+        key: 'antiForceField_96',
+        radius: 48
+      },
+      {
+        x: 724,
+        y: 1144,
+        key: 'antiForceField_96',
+        radius: 48
+      },
+      {
+        x: 328,
+        y: 642,
+        key: 'antiForceField_64',
+        radius: 32
+      },
+      {
+        x: 743,
+        y: 886,
+        key: 'antiForceField_64',
+        radius: 32
+      },
+      {
+        x: 782,
+        y: 847,
+        key: 'antiForceField_64',
+        radius: 32
+      },
+      {
+        x: 803,
+        y: 899,
+        key: 'antiForceField_64',
+        radius: 32
+      },
+      {
+        x: 546,
+        y: 1107,
+        key: 'antiForceField_96',
+        radius: 48
+      },
+      {
+        x: 632,
+        y: 1139,
+        key: 'antiForceField_96',
+        radius: 48
+      },
+      {
+        x: 970,
+        y: 956,
+        key: 'antiForceField_96',
+        radius: 48
+      },
+      {
+        x: 941,
+        y: 876,
+        key: 'antiForceField_96',
+        radius: 48
+      },
+      {
+        x: 857,
+        y: 833,
         key: 'antiForceField_96',
         radius: 48
       }
     ],
     goodies: [
       {
-        x: 254,
-        y: 578
+        x: 454,
+        y: 878
       },
       {
-        x: 513,
-        y: 777
+        x: 713,
+        y: 1077
       },
       {
-        x: 702,
-        y: 644
+        x: 902,
+        y: 944
       }
     ]
   },
@@ -2107,94 +2111,94 @@ module.exports = [
       y: 800
     },
     player: {
-      x: 502,
-      y: 29,
+      x: 702,
+      y: 329,
       key: 'player'
     },
     asteroids: [
       {
-        x: 500,
-        y: 82,
+        x: 700,
+        y: 382,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 465,
-        y: 133,
+        x: 665,
+        y: 433,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 527,
-        y: 241,
+        x: 727,
+        y: 541,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 591,
-        y: 438,
+        x: 791,
+        y: 738,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 584,
-        y: 314,
+        x: 784,
+        y: 614,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 410,
-        y: 295,
+        x: 610,
+        y: 595,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 346,
-        y: 417,
+        x: 546,
+        y: 717,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       }
     ],
     target: {
-      x: 494,
-      y: 547,
+      x: 694,
+      y: 847,
       key: 'target',
       radius: 18
     },
     novae: [
       {
-        x: 440,
-        y: 182,
+        x: 640,
+        y: 482,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 536,
-        y: 186,
+        x: 736,
+        y: 486,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 510,
-        y: 360,
+        x: 710,
+        y: 660,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 653,
-        y: 392,
+        x: 853,
+        y: 692,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 452,
-        y: 368,
+        x: 652,
+        y: 668,
         key: 'nova_32',
         radius: 16
       }
@@ -2202,108 +2206,108 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 598,
-        y: 249
+        x: 798,
+        y: 549
       },
       {
-        x: 623,
-        y: 355
+        x: 823,
+        y: 655
       },
       {
-        x: 498,
-        y: 461
+        x: 698,
+        y: 761
       }
     ]
   },
   // Level 24:
   {
     player: {
-      x: 994,
-      y: 433,
+      x: 1194,
+      y: 733,
       key: 'player'
     },
     asteroids: [
       {
-        x: 929,
-        y: 434,
+        x: 1129,
+        y: 734,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 803,
-        y: 356,
+        x: 1003,
+        y: 656,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 667,
-        y: 358,
+        x: 867,
+        y: 658,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 565,
-        y: 453,
+        x: 765,
+        y: 753,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 497,
-        y: 357,
+        x: 697,
+        y: 657,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       }
     ],
     target: {
-      x: 557,
-      y: 286,
+      x: 757,
+      y: 586,
       key: 'target',
       radius: 18
     },
     novae: [
       {
-        x: 390,
-        y: 413,
+        x: 590,
+        y: 713,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 553,
-        y: 382,
+        x: 753,
+        y: 682,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 711,
-        y: 422,
+        x: 911,
+        y: 722,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 564,
-        y: 505,
+        x: 764,
+        y: 805,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 408,
-        y: 474,
+        x: 608,
+        y: 774,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 712,
-        y: 274,
+        x: 912,
+        y: 574,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 565,
-        y: 541,
+        x: 765,
+        y: 841,
         key: 'nova_32',
         radius: 16
       }
@@ -2311,22 +2315,22 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 480,
-        y: 427
+        x: 680,
+        y: 727
       },
       {
-        x: 642,
-        y: 461
+        x: 842,
+        y: 761
       },
       {
-        x: 802,
-        y: 427
+        x: 1002,
+        y: 727
       }
     ],
     antiForceFields: [
       {
-        x: 563,
-        y: 610,
+        x: 763,
+        y: 910,
         key: 'antiForceField_64',
         radius: 32
       }
@@ -2335,96 +2339,96 @@ module.exports = [
   // Level 25: "Decision Time" by Beni Dietz
   {
     player: {
-      x: 507,
-      y: 58,
+      x: 707,
+      y: 358,
       key: 'player'
     },
     target: {
-      x: 513,
-      y: 750,
+      x: 713,
+      y: 1050,
       key: 'target',
       radius: 18
     },
     asteroids: [
       {
-        x: 447,
-        y: 312,
+        x: 647,
+        y: 612,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 508,
-        y: 254,
+        x: 708,
+        y: 554,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 579,
-        y: 364,
+        x: 779,
+        y: 664,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 369,
-        y: 593,
+        x: 569,
+        y: 893,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 289,
-        y: 592,
+        x: 489,
+        y: 892,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 211,
-        y: 594,
+        x: 511,
+        y: 894,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 132,
-        y: 591,
+        x: 332,
+        y: 891,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 56,
-        y: 587,
+        x: 256,
+        y: 887,
         key: 'thermoAsteroid_64',
         radius: 32,
         enemy: true
       },
       {
-        x: 651,
-        y: 561,
+        x: 851,
+        y: 861,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 603,
-        y: 709,
+        x: 803,
+        y: 1009,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 699,
-        y: 628,
+        x: 899,
+        y: 928,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 730,
-        y: 737,
+        x: 930,
+        y: 1037,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
@@ -2432,46 +2436,46 @@ module.exports = [
     ],
     antiForceFields: [
       {
-        x: 513,
-        y: 424,
+        x: 713,
+        y: 724,
         key: 'antiForceField_64',
         radius: 32
       }
     ],
     novae: [
       {
-        x: 536,
-        y: 711,
+        x: 736,
+        y: 1011,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 554,
-        y: 742,
+        x: 754,
+        y: 1042,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 546,
-        y: 777,
+        x: 746,
+        y: 1077,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 513,
-        y: 789,
+        x: 713,
+        y: 1089,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 501,
-        y: 706,
+        x: 701,
+        y: 1006,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 476,
-        y: 790,
+        x: 676,
+        y: 1090,
         key: 'nova_32',
         radius: 16
       }
@@ -2480,16 +2484,16 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 545,
-        y: 81
+        x: 745,
+        y: 381
       },
       {
-        x: 470,
-        y: 707
+        x: 670,
+        y: 1007
       },
       {
-        x: 506,
-        y: 21
+        x: 706,
+        y: 321
       }
     ]
   },
@@ -2502,70 +2506,70 @@ module.exports = [
       y: 800
     },
     player: {
-      x: 236,
-      y: 399,
+      x: 436,
+      y: 799,
       key: 'player'
     },
     asteroids: [
       {
-        x: 337,
-        y: 538,
+        x: 537,
+        y: 838,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 441,
-        y: 495,
+        x: 641,
+        y: 795,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 384,
-        y: 351,
+        x: 584,
+        y: 651,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 556,
-        y: 411,
+        x: 756,
+        y: 711,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 499,
-        y: 624,
+        x: 699,
+        y: 924,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       },
       {
-        x: 628,
-        y: 495,
+        x: 828,
+        y: 795,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 381,
-        y: 680,
+        x: 581,
+        y: 980,
         key: 'asteroid_64',
         radius: 32,
         enemy: false
       }
     ],
     target: {
-      x: 375,
-      y: 609,
+      x: 575,
+      y: 909,
       key: 'target',
       radius: 18
     },
     novae: [
       {
-        x: 628,
-        y: 373,
+        x: 828,
+        y: 573,
         key: 'nova_64',
         radius: 32
       }
@@ -2573,22 +2577,22 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 241,
-        y: 488
+        x: 441,
+        y: 788
       },
       {
-        x: 519,
-        y: 344
+        x: 719,
+        y: 644
       },
       {
-        x: 538,
-        y: 463
+        x: 738,
+        y: 763
       }
     ],
     antiForceFields: [
       {
-        x: 255,
-        y: 607,
+        x: 455,
+        y: 907,
         key: 'antiForceField_96',
         radius: 48
       }
@@ -2597,46 +2601,46 @@ module.exports = [
   // Level 28:
   {
     player: {
-      x: 868,
-      y: 861,
+      x: 1068,
+      y: 1161,
       key: 'player'
     },
     target: {
-      x: 292,
-      y: 550,
+      x: 492,
+      y: 850,
       key: 'target',
       radius: 18
     },
     asteroids: [
       {
-        x: 664,
-        y: 844,
+        x: 864,
+        y: 1144,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 806,
-        y: 887,
+        x: 1006,
+        y: 1187,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 572,
-        y: 629,
+        x: 772,
+        y: 929,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 435,
-        y: 599,
+        x: 635,
+        y: 899,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
       },
       {
-        x: 342,
-        y: 439,
+        x: 542,
+        y: 739,
         key: 'thermoAsteroid_32',
         radius: 16,
         enemy: true
@@ -2644,38 +2648,38 @@ module.exports = [
     ],
     novae: [
       {
-        x: 675,
-        y: 792,
+        x: 875,
+        y: 1092,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 590,
-        y: 675,
+        x: 790,
+        y: 975,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 479,
-        y: 567,
+        x: 679,
+        y: 867,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 346,
-        y: 495,
+        x: 546,
+        y: 795,
         key: 'nova_64',
         radius: 32
       },
       {
-        x: 626,
-        y: 798,
+        x: 826,
+        y: 1098,
         key: 'nova_32',
         radius: 16
       },
       {
-        x: 610,
-        y: 629,
+        x: 810,
+        y: 929,
         key: 'nova_32',
         radius: 16
       }
@@ -2683,34 +2687,34 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 412,
-        y: 515
+        x: 612,
+        y: 815
       },
       {
-        x: 516,
-        y: 636
+        x: 716,
+        y: 936
       },
       {
-        x: 654,
-        y: 722
+        x: 854,
+        y: 1022
       }
     ],
     antiForceFields: [
       {
-        x: 547,
-        y: 805,
+        x: 747,
+        y: 1105,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 639,
-        y: 557,
+        x: 839,
+        y: 857,
         key: 'antiForceField_96',
         radius: 48
       },
       {
-        x: 370,
-        y: 648,
+        x: 570,
+        y: 948,
         key: 'antiForceField_96',
         radius: 48
       }
@@ -2719,35 +2723,35 @@ module.exports = [
   // Level 29:
   {
     player: {
-      x: 878,
-      y: 623,
+      x: 1078,
+      y: 923,
       key: 'player'
     },
     asteroids: [
       {
-        x: 630,
-        y: 620,
+        x: 830,
+        y: 920,
         key: 'asteroid_32',
         radius: 16
       },
       {
-        x: 500,
-        y: 500,
+        x: 700,
+        y: 800,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       },
       {
-        x: 775,
-        y: 640,
+        x: 975,
+        y: 940,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
       }
     ],
     target: {
-      x: 500,
-      y: 368,
+      x: 700,
+      y: 668,
       key: 'target',
       radius: 18
     },
@@ -2755,164 +2759,164 @@ module.exports = [
     maxDistance: 250,
     goodies: [
       {
-        x: 540,
-        y: 440
+        x: 740,
+        y: 740
       },
       {
-        x: 460,
-        y: 440
+        x: 660,
+        y: 740
       },
       {
-        x: 480,
-        y: 440
+        x: 680,
+        y: 740
       },
       {
-        x: 500,
-        y: 440
+        x: 700,
+        y: 740
       },
       {
-        x: 520,
-        y: 440
+        x: 720,
+        y: 740
       },
       {
-        x: 540,
-        y: 460
+        x: 740,
+        y: 760
       },
       {
-        x: 460,
-        y: 460
+        x: 660,
+        y: 760
       },
       {
-        x: 480,
-        y: 460
+        x: 680,
+        y: 760
       },
       {
-        x: 500,
-        y: 460
+        x: 700,
+        y: 760
       },
       {
-        x: 520,
-        y: 460
+        x: 720,
+        y: 760
       },
       {
-        x: 540,
-        y: 540
+        x: 740,
+        y: 840
       },
       {
-        x: 460,
-        y: 540
+        x: 660,
+        y: 840
       },
       {
-        x: 480,
-        y: 540
+        x: 680,
+        y: 840
       },
       {
-        x: 500,
-        y: 540
+        x: 700,
+        y: 840
       },
       {
-        x: 520,
-        y: 540
+        x: 720,
+        y: 840
       },
       {
-        x: 540,
-        y: 560
+        x: 740,
+        y: 860
       },
       {
-        x: 460,
-        y: 560
+        x: 660,
+        y: 860
       },
       {
-        x: 480,
-        y: 560
+        x: 680,
+        y: 860
       },
       {
-        x: 500,
-        y: 560
+        x: 700,
+        y: 860
       },
       {
-        x: 520,
-        y: 560
+        x: 720,
+        y: 860
       },
       {
-        x: 540,
-        y: 520
+        x: 740,
+        y: 820
       },
       {
-        x: 540,
-        y: 500
+        x: 740,
+        y: 800
       },
       {
-        x: 540,
-        y: 480
+        x: 740,
+        y: 880
       },
       {
-        x: 460,
-        y: 520
+        x: 660,
+        y: 820
       },
       {
-        x: 460,
-        y: 500
+        x: 660,
+        y: 800
       },
       {
-        x: 460,
-        y: 480
+        x: 660,
+        y: 780
       },
       {
-        x: 440,
-        y: 440
+        x: 640,
+        y: 740
       },
       {
-        x: 440,
-        y: 460
+        x: 640,
+        y: 760
       },
       {
-        x: 440,
-        y: 480
+        x: 640,
+        y: 780
       },
       {
-        x: 440,
-        y: 500
+        x: 640,
+        y: 800
       },
       {
-        x: 440,
-        y: 520
+        x: 640,
+        y: 820
       },
       {
-        x: 440,
-        y: 540
+        x: 640,
+        y: 840
       },
       {
-        x: 440,
-        y: 560
+        x: 640,
+        y: 860
       },
       {
-        x: 560,
-        y: 440
+        x: 760,
+        y: 740
       },
       {
-        x: 560,
-        y: 460
+        x: 760,
+        y: 760
       },
       {
-        x: 560,
-        y: 480
+        x: 760,
+        y: 780
       },
       {
-        x: 560,
-        y: 500
+        x: 760,
+        y: 800
       },
       {
-        x: 560,
-        y: 520
+        x: 760,
+        y: 820
       },
       {
-        x: 560,
-        y: 540
+        x: 760,
+        y: 840
       },
       {
-        x: 560,
-        y: 560
+        x: 760,
+        y: 860
       }
     ]
   }
