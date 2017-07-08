@@ -5,9 +5,6 @@ module.exports = [
   {},
   // Level 1:
   {
-    camera: {
-      y: 800
-    },
     player: {
       x: 712,
       y: 600,
@@ -567,10 +564,6 @@ module.exports = [
   },
   // Level 9:
   {
-    camera: {
-      x: 0,
-      y: 800
-    },
     player: {
       x: 802,
       y: 628,
@@ -716,9 +709,6 @@ module.exports = [
   },
   // Level 11:
   {
-    camera: {
-      x: 0
-    },
     player: {
       x: 804,
       y: 632,
@@ -797,10 +787,6 @@ module.exports = [
   },
   // Level 12:
   {
-    camera: {
-      x: 0,
-      y: 1000
-    },
     player: {
       x: 712,
       y: 520,
@@ -877,10 +863,6 @@ module.exports = [
   },
   // Level 13: "Hide & seek" by Malte Schiebelmann
   {
-    camera: {
-      x: 0,
-      y: 800
-    },
     player: {
       x: 728,
       y: 667,
@@ -1439,9 +1421,6 @@ module.exports = [
   },
   // Level 19: "Alien chase" by Gregory Katsaros
   {
-    camera: {
-      y: 800
-    },
     player: {
       x: 792,
       y: 569,
@@ -1556,9 +1535,6 @@ module.exports = [
   },
   // Level 20: "An easy one" by Gregory Katsaros
   {
-    camera: {
-      y: 800
-    },
     player: {
       x: 344,
       y: 334,
@@ -2107,9 +2083,6 @@ module.exports = [
   },
   // Level 23:
   {
-    camera: {
-      y: 800
-    },
     player: {
       x: 702,
       y: 329,
@@ -2502,9 +2475,6 @@ module.exports = [
   // BONUS:
   // Level 27: 'Sudden death' - by Martin Boeckle
   {
-    camera: {
-      y: 800
-    },
     player: {
       x: 406,
       y: 799,

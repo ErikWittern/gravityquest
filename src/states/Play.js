@@ -95,6 +95,10 @@ export default class extends Phaser.State {
     // kick things off:
     this.showLevelTitle(this.game.currentLevel)
 
+    // store last camera position (for parallax background)
+    this.cameraLastX = this.game.camera.x
+    this.cameraLastY = this.game.camera.y
+
     this.game.time.events.add(Phaser.Timer.SECOND, () => {
       this.player.appear()
         .then(() => {
@@ -240,20 +244,7 @@ export default class extends Phaser.State {
     )
 
     // position camera:
-    if (typeof level.camera === 'object') {
-      if (typeof level.camera.x !== 'undefined') {
-        this.game.camera.x = level.camera.x
-      } else {
-        this.game.camera.x = this.player.x - Math.floor(this.game.width * 0.5)
-      }
-      if (typeof level.camera.y !== 'undefined') {
-        this.game.camera.y = level.camera.y
-      } else {
-        this.game.camera.y = this.player.y - Math.floor(this.game.height * 0.5)
-      }
-    } else {
-      this.game.camera.focusOn(this.player)
-    }
+    this.game.camera.focusOn(this.player)
 
     // create speech bubble to indicate being lost soon
     this.speechLost = this.game.add.sprite(this.player.x, this.player.y - 80, 'speechBubbleLost')
@@ -380,14 +371,6 @@ export default class extends Phaser.State {
     }
 
     // parallax scrolling:
-    // store last camera position (for parallax background)
-    if (typeof this.cameraLastX === 'undefined') {
-      this.cameraLastX = this.game.camera.x
-    }
-    if (typeof this.cameraLastY === 'undefined') {
-      this.cameraLastY = this.game.camera.y
-    }
-
     if (this.game.camera.x !== this.cameraLastX) {
       this.background.x -= 0.3 * (this.cameraLastX - this.game.camera.x)
       this.cameraLastX = this.game.camera.x

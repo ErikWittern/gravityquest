@@ -104,7 +104,7 @@ export default class extends Phaser.Sprite {
       this.destroy()
       callback()
     })
-  };
+  }
 
   burn (callback) {
     this.body.acceleration.setTo(0, 0)
