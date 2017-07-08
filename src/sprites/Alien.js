@@ -45,8 +45,13 @@ export default class extends Phaser.Sprite {
   }
 
   explode () {
-  // define emitter for explosion:
-    let explosionEmitter = this.game.add.emitter(0, 0, 40) // position and number of particles
+    this.alive = false
+    this.visible = false
+    this.alienSound.stop()
+    this.alienExplosionSound.play()
+
+    // define emitter for explosion:
+    let explosionEmitter = this.game.add.emitter(0, 0, 45) // position and number of particles
     explosionEmitter.gravity = 0
     explosionEmitter.minParticleSpeed.setTo(-50, -50)
     explosionEmitter.maxParticleSpeed.setTo(50, 50)
@@ -57,15 +62,9 @@ export default class extends Phaser.Sprite {
     explosionEmitter.z = this.z + 1
     explosionEmitter.start(true, 2000, null, 40)  // explodes, 1500 ms lifespan per particle, frequency ignored (explodes), 0 = launch all particles
 
-    this.alienExplosionSound.play()
-
-    this.game.time.events.add(Phaser.Timer.SECOND * 0.2, () => {
-      this.alienSound.stop()
-      this.destroy()
-    })
-
-    this.game.time.events.add(Phaser.Timer.SECOND * 2, () => {
+    this.game.time.events.add(Phaser.Timer.SECOND * 2.5, () => {
       explosionEmitter.destroy()
+      this.destroy()
     })
   }
 }

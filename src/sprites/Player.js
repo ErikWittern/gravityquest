@@ -113,20 +113,20 @@ export default class extends Phaser.Sprite {
     this.game.playerControls = false
     this.game.playerReady = false
 
-  // play sound:
+    // play sound:
     this.burnSound.play()
 
-  // animate player burning and execute callback at the end:
+    // animate player burning and execute callback at the end:
     this.animations.play('twist')
     this.tint = 0x990000
     var burnEmitter = this.game.add.emitter(this.x, this.y, 50)
     burnEmitter.makeParticles('spark')
-    burnEmitter.minParticleSpeed.setTo(-250, -250)
-    burnEmitter.maxParticleSpeed.setTo(250, 250)
+    burnEmitter.minParticleSpeed.setTo(-50, -50)
+    burnEmitter.maxParticleSpeed.setTo(50, 50)
     burnEmitter.gravity = 0
     burnEmitter.width = 20
     burnEmitter.height = 20
-    burnEmitter.start(false, 100, 5)
+    burnEmitter.start(false, 1000, 5)
     this.game.time.events.add(Phaser.Timer.SECOND, () => {
       this.destroy()
       burnEmitter.destroy()

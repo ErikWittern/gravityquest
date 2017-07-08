@@ -85,22 +85,23 @@ export default class extends Phaser.State {
 
     // kick things off:
     this.showLevelTitle(this.game.currentLevel)
-      .then(() => {
-        return this.player.appear()
-      })
-      .then(() => {
-        // get into INTRO mode if there is one:
-        let intro = Levels[this.game.currentLevel].intro
-        if (typeof intro !== 'undefined') {
-          this.gq.introPlaying = true
-          this.intro = new Intro({
-            game: this.game,
-            playState: this,
-            intro: intro
-          })
-          this.game.add.existing(this.intro)
-        }
-      })
+
+    this.game.time.events.add(Phaser.Timer.SECOND, () => {
+      this.player.appear()
+        .then(() => {
+          // get into INTRO mode if there is one:
+          let intro = Levels[this.game.currentLevel].intro
+          if (typeof intro !== 'undefined') {
+            this.gq.introPlaying = true
+            this.intro = new Intro({
+              game: this.game,
+              playState: this,
+              intro: intro
+            })
+            this.game.add.existing(this.intro)
+          }
+        })
+    })
   }
 
   setupLevel (levelNumber) {
@@ -202,7 +203,7 @@ export default class extends Phaser.State {
     if (Array.isArray(level.aliens)) {
       this.aliens = []
       level.aliens.forEach(al => {
-        var alien = new Alien({
+        let alien = new Alien({
           game: this.game,
           x: al.x,
           y: al.y,
@@ -427,22 +428,22 @@ export default class extends Phaser.State {
       }
     }
 
-      // aliens:
+    // aliens:
     if (typeof this.aliens !== 'undefined') {
-        // player vs. aliens:
+      // player vs. aliens:
       this.aliens.forEach(alien => {
         if (this.collidesRectCircle(this.player, alien)) {
           this.burnPlayer('Busted by\naliens!')
         }
       })
-        // aliens vs. aliens:
+
+      // aliens vs. aliens:
       this.aliens.forEach((alien1, i1) => {
         this.aliens.forEach((alien2, i2) => {
-          if (i2 > i1 && this.collidesCircleCircle(alien1, alien2)) {
+          if (i2 > i1 && alien1.alive && alien2.alive &&
+            this.collidesCircleCircle(alien1, alien2)) {
             alien1.explode()
             alien2.explode()
-            alien1.destroy()
-            alien2.destroy()
           }
         })
       })
@@ -517,6 +518,11 @@ export default class extends Phaser.State {
     this.gq.playerControls = false
     this.player.animations.play('twist')
 
+    // hide gun:
+    this.line.visible = false // make line invisible
+    this.gunEmitter.on = false // stop emitter
+    this.gunSound.stop() // stop the sound of the gun
+
     this.pauseMenu = new PauseMenu({
       game: this.game,
       playState: this,
@@ -528,6 +534,11 @@ export default class extends Phaser.State {
   burnPlayer (message) {
     // disable player controls:
     this.gq.playerControls = false
+
+    // hide gun:
+    this.line.visible = false // make line invisible
+    this.gunEmitter.on = false // stop emitter
+    this.gunSound.stop() // stop the sound of the gun
 
     this.player.burn(() => {
       this.pauseMenu = new PauseMenu({
