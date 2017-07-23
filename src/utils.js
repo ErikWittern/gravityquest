@@ -37,7 +37,7 @@ const storeMuted = (muted) => {
 
 const loadMuted = () => {
   let muted = JSON.parse(localStorage.getItem(MUTED))
-  if (typeof mute !== 'boolean') {
+  if (typeof muted === 'boolean') {
     return muted
   }
   return false
