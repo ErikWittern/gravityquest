@@ -44,7 +44,7 @@ export default class extends Phaser.Sprite {
 
   toggleMuted () {
     let muted = Utils.loadMuted()
-    if (muted === false) {
+    if (!muted) {
       muted = true
       this.game.sound.mute = true
       this.animations.play('mute')
