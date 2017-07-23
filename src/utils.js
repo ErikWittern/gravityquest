@@ -7,6 +7,7 @@
  */
 const LEVELS = 'gravity-gun'
 const MUTED = 'gravity-gun-mute'
+const MENU = 'gravity-gun-menu'
 
 const storeLevelResult = (level, collectedGoodies) => {
   let stats = JSON.parse(localStorage.getItem(LEVELS))
@@ -42,9 +43,24 @@ const loadMuted = () => {
   return false
 }
 
+const storeMenuPosition = (value) => {
+  if (!value) value = 0
+  localStorage.setItem(MENU, value)
+}
+
+const retrieveMenuPosition = () => {
+  let menuPosition = JSON.parse(localStorage.getItem(MENU))
+  if (typeof menuPosition === 'number') {
+    return menuPosition
+  }
+  return 0
+}
+
 module.exports = {
   storeLevelResult,
   loadLevelStats,
   storeMuted,
-  loadMuted
+  loadMuted,
+  storeMenuPosition,
+  retrieveMenuPosition
 }

@@ -4,7 +4,7 @@
 
 import Phaser from 'phaser'
 import Player from '../sprites/Player'
-import config from '../config'
+import Utils from '../utils'
 
 export default class extends Phaser.State {
   init () {}
@@ -107,16 +107,7 @@ export default class extends Phaser.State {
     this.bubbleText.align = 'center'
 
     // store that intro was viewed:
-    if (typeof Storage !== 'undefined') {
-      var stats = JSON.parse(localStorage.getItem('gravity-gun'))
-      if (stats) {
-        stats[0] = '0'
-      } else {
-        stats = []
-        stats[0] = '0'
-      }
-      localStorage.setItem('gravity-gun', JSON.stringify(stats))
-    }
+    Utils.storeLevelResult(0, 0)
 
     // start scenes:
     this.scene1()

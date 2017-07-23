@@ -1,7 +1,5 @@
 'use strict'
 
-/* global localStorage */
-
 import Phaser from 'phaser'
 import Mute from '../sprites/mute'
 import Utils from '../utils'
@@ -53,7 +51,7 @@ export default class extends Phaser.State {
     this.numOfEntries = Math.floor((this.game.height - this.topSpace) / this.entrySpace)
 
     // current offset:
-    this.offset = this.retrieveMenuPosition()
+    this.offset = Utils.retrieveMenuPosition()
 
     // List of all level names for menu:
     this.textChoice = ['Intro', 'Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5', 'Level 6',
@@ -169,7 +167,7 @@ export default class extends Phaser.State {
     }
 
     // store current menu position:
-    this.storeMenuPosition(this.offset)
+    Utils.storeMenuPosition(this.offset)
 
     // group to hold level stats:
     if (typeof this.levelStatsGroup !== 'undefined') {
@@ -251,22 +249,6 @@ export default class extends Phaser.State {
       goodiesText.fixedToCamera = true
       this.levelStatsGroup.add(goodiesText)
     }
-  }
-
-  storeMenuPosition (value) {
-    if (typeof Storage !== 'undefined') {
-      localStorage.setItem('gravityquest-menu', value)
-    }
-  }
-
-  retrieveMenuPosition () {
-    if (typeof Storage !== 'undefined') {
-      var position = JSON.parse(localStorage.getItem('gravityquest-menu'))
-      if (position !== null && typeof position !== 'undefined') {
-        return position
-      }
-    }
-    return 0
   }
 
   fadeIn () {
