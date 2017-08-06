@@ -6,8 +6,8 @@ import config from '../config'
 export default class extends Phaser.State {
   init () {
     // load bar:
-    this.preloadBar = this.add.sprite(Math.floor(config.gameWidth * 0.5) - 50, Math.floor(config.gameHeight * 0.5), 'loadbar_frame')
-    this.preloadBar = this.add.sprite(Math.floor(config.gameWidth * 0.5) - 50, Math.floor(config.gameHeight * 0.5), 'loadbar')
+    this.preloadBar = this.add.sprite(Math.floor(this.game.width * 0.5) - 50, Math.floor(this.game.height * 0.5), 'loadbar_frame')
+    this.preloadBar = this.add.sprite(Math.floor(this.game.width * 0.5) - 50, Math.floor(this.game.height * 0.5), 'loadbar')
     this.load.setPreloadSprite(this.preloadBar)
   }
 
