@@ -176,14 +176,17 @@ export default class extends Phaser.State {
     this.levelStatsGroup = this.add.group()
 
     let lastLevel = Math.min(this.numOfEntries + this.offset, this.textChoice.length)
+
+    let leftPad = Math.floor(this.game.width * 0.5) - 90
+
     for (let i = this.offset; i < lastLevel; i++) {
       if (i === 0) {
         // show "Intro:"
-        let levelText = this.game.add.bitmapText(70, this.topSpace + (i - this.offset) * this.entrySpace, 'font_white_16', this.textChoice[i], 16)
+        let levelText = this.game.add.bitmapText(leftPad, this.topSpace + (i - this.offset) * this.entrySpace, 'font_white_16', this.textChoice[i], 16)
         this.levelStatsGroup.add(levelText)
 
         // create intro btn:
-        let levelBtn = this.add.sprite(70, this.topSpace - 20 + (i - this.offset) * this.entrySpace, 'empty')
+        let levelBtn = this.add.sprite(leftPad, this.topSpace - 20 + (i - this.offset) * this.entrySpace, 'empty')
         levelBtn.height = this.entrySpace
         levelBtn.width = 180
         levelBtn.level = i
@@ -195,11 +198,11 @@ export default class extends Phaser.State {
         let statsPrev = this.levelStats[i - 1]
         if (typeof statsPrev !== 'undefined' && statsPrev !== null) {
           // create level names:
-          var levelText = this.game.add.bitmapText(70, this.topSpace + (i - this.offset) * this.entrySpace, 'font_white_16', this.textChoice[i], 16)
+          var levelText = this.game.add.bitmapText(leftPad, this.topSpace + (i - this.offset) * this.entrySpace, 'font_white_16', this.textChoice[i], 16)
           this.levelStatsGroup.add(levelText)
 
           // create level btn:
-          var levelBtn = this.game.add.sprite(70, this.topSpace - 20 + (i - this.offset) * this.entrySpace, 'empty')
+          var levelBtn = this.game.add.sprite(leftPad, this.topSpace - 20 + (i - this.offset) * this.entrySpace, 'empty')
           levelBtn.height = this.entrySpace
           levelBtn.width = 180
           levelBtn.level = i
@@ -217,10 +220,11 @@ export default class extends Phaser.State {
   }
 
   showLevelStats (stats, y) {
+    let leftPad = Math.floor(this.game.width * 0.5) + 15
     if (stats <= 3) {
       // add borders around collected goodies:
       for (let count = 0; count < 3; count++) {
-        let goodyBorder = this.game.add.sprite(Math.floor(170 + (30 * count)), y + 5, 'goody_border')
+        let goodyBorder = this.game.add.sprite(Math.floor(leftPad + (30 * count)), y + 7, 'goody_border')
         goodyBorder.anchor.setTo(0.5, 0.5)
         goodyBorder.scale.setTo(2, 2)
         goodyBorder.fixedToCamera = true
@@ -229,7 +233,7 @@ export default class extends Phaser.State {
 
       // add indication of collected goodies:
       for (let count = 0; count < stats; count++) {
-        let goody = this.game.add.sprite(Math.floor(170 + (30 * count)), y + 5, 'goody')
+        let goody = this.game.add.sprite(Math.floor(leftPad + (30 * count)), y + 7, 'goody')
         goody.anchor.setTo(0.5, 0.5)
         goody.scale.setTo(0, 0)
         goody.fixedToCamera = true
@@ -245,7 +249,7 @@ export default class extends Phaser.State {
       }
     } else {
       // add indication that more than 3 minerals have been collected:
-      var goodiesText = this.game.add.bitmapText(160, y, 'font_white_16', stats + ' / 40', 16)
+      var goodiesText = this.game.add.bitmapText(leftPad, y, 'font_white_16', stats + ' / 40', 16)
       goodiesText.fixedToCamera = true
       this.levelStatsGroup.add(goodiesText)
     }
