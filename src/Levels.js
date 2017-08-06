@@ -276,7 +276,7 @@ module.exports = [
       },
       {
         x: 911,
-        y: 394
+        y: 594
       }
     ]
   },
@@ -295,7 +295,7 @@ module.exports = [
     },
     asteroids: [
       {
-        x: 600,
+        x: 700,
         y: 800,
         key: 'asteroid_32',
         radius: 16
@@ -794,7 +794,7 @@ module.exports = [
     },
     target: {
       x: 690,
-      y: 750,
+      y: 850,
       key: 'target',
       radius: 18
     },
@@ -994,7 +994,7 @@ module.exports = [
       },
       {
         x: 643,
-        y: 386,
+        y: 586,
         key: 'nova_32',
         radius: 16
       },
@@ -1139,7 +1139,7 @@ module.exports = [
       },
       {
         x: 625,
-        y: 745,
+        y: 845,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
@@ -1255,7 +1255,7 @@ module.exports = [
       },
       {
         x: 827,
-        y: 799,
+        y: 699,
         key: 'asteroid_32',
         radius: 16,
         enemy: false
@@ -2358,7 +2358,7 @@ module.exports = [
         enemy: true
       },
       {
-        x: 511,
+        x: 411,
         y: 894,
         key: 'thermoAsteroid_64',
         radius: 32,
@@ -2476,8 +2476,8 @@ module.exports = [
   // Level 27: 'Sudden death' - by Martin Boeckle
   {
     player: {
-      x: 406,
-      y: 799,
+      x: 436,
+      y: 699,
       key: 'player'
     },
     asteroids: [
@@ -2539,7 +2539,7 @@ module.exports = [
     novae: [
       {
         x: 828,
-        y: 573,
+        y: 673,
         key: 'nova_64',
         radius: 32
       }
