@@ -140,7 +140,7 @@ module.exports = [
     ],
     target: {
       x: 487,
-      y: 371,
+      y: 471,
       key: 'target',
       radius: 18
     },
