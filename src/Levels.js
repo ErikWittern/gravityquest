@@ -218,7 +218,7 @@ module.exports = [
     ],
     maxDistance: 250,
     intro: {
-      numScenes: 5,
+      numScenes: 3,
       playScene (game, x, y, scene) {
         if (scene === 1) {
           this.bubble = game.add.sprite(x, y - 80, 'speechBubble')
