@@ -1,7 +1,5 @@
 'use strict'
 
-/* global localStorage */
-
 import Phaser from 'phaser'
 import Player from '../sprites/Player'
 import Utils from '../utils'
