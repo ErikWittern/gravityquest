@@ -503,7 +503,7 @@ export default class extends Phaser.State {
 
   goToNextLevel () {
     this.game.currentLevel++
-    if (this.currentLevel !== 26) {
+    if (this.game.currentLevel !== 26) {
       this.game.state.start('Play')
     } else {
       this.game.state.start('Outro')
