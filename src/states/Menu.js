@@ -60,11 +60,7 @@ export default class extends Phaser.State {
       'Level 21', 'Level 22', 'Level 23', 'Level 24', 'Level 25', 'Outro']
 
     // Add bonus levels if all 75 minerals have been collected:
-    this.overallScore = this.levelStats.reduce((sum, points) => {
-      return sum + points
-    }, 0)
-
-    if (this.overallScore >= 75) {
+    if (Utils.isFullyCompleted()) {
       // store that outro was viewed:
       Utils.storeLevelResult(26, 0)
 

@@ -9,6 +9,20 @@ const LEVELS = 'gravity-gun'
 const MUTED = 'gravity-gun-mute'
 const MENU = 'gravity-gun-menu'
 
+const isFullyCompleted = () => {
+  let stats = loadLevelStats()
+
+  // all levels are completed:
+  if (stats.length < 26) return false
+
+  // all levels have 3 minerals:
+  for (let i = 1; (i < stats.length && i < 26); i++) {
+    if (stats[i] < 3) return false
+  }
+
+  return true
+}
+
 const storeLevelResult = (level, collectedGoodies) => {
   let stats = JSON.parse(localStorage.getItem(LEVELS))
   if (stats) {
@@ -62,5 +76,6 @@ module.exports = {
   storeMuted,
   loadMuted,
   storeMenuPosition,
-  retrieveMenuPosition
+  retrieveMenuPosition,
+  isFullyCompleted
 }
