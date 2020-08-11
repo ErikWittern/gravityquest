@@ -1,8 +1,6 @@
 'use strict'
 
-import Phaser from 'phaser'
-
-export default class extends Phaser.Sprite {
+class PauseMenu extends Phaser.Sprite {
   constructor ({ game, playState, message, noResume }) {
     super(game)
     // store reference to play state:
@@ -87,3 +85,5 @@ export default class extends Phaser.Sprite {
     this.play.menuButtonBackground.visible = true
   };
 }
+
+module.exports = PauseMenu

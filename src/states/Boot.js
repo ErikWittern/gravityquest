@@ -1,8 +1,6 @@
 'use strict'
 
-import Phaser from 'phaser'
-
-export default class extends Phaser.State {
+class BootState extends Phaser.State {
   init () {
     // set some basic options:
     this.stage.backgroundColor = '#000000'
@@ -25,3 +23,5 @@ export default class extends Phaser.State {
     this.state.start('Load')
   }
 }
+
+module.exports = BootState

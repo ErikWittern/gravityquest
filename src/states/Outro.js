@@ -1,9 +1,8 @@
 'use strict'
 
-import Phaser from 'phaser'
-import Utils from '../utils'
+const Utils = require('../utils')
 
-export default class extends Phaser.State {
+class OutroState extends Phaser.State {
   init () {}
 
   preload () {}
@@ -357,3 +356,5 @@ export default class extends Phaser.State {
     }
   }
 }
+
+module.exports = OutroState

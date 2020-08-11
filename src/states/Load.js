@@ -1,8 +1,6 @@
 'use strict'
 
-import Phaser from 'phaser'
-
-export default class extends Phaser.State {
+class LoadState extends Phaser.State {
   init () {
     // load bar:
     this.preloadBar = this.add.sprite(Math.floor(this.game.width * 0.5) - 50, Math.floor(this.game.height * 0.5), 'loadbar_frame')
@@ -88,3 +86,5 @@ export default class extends Phaser.State {
     }
   }
 }
+
+module.exports = LoadState

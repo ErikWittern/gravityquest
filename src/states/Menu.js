@@ -1,10 +1,9 @@
 'use strict'
 
-import Phaser from 'phaser'
-import Mute from '../sprites/mute'
-import Utils from '../utils'
+const Mute = require('../sprites/mute')
+const Utils = require('../utils')
 
-export default class extends Phaser.State {
+class MenuState extends Phaser.State {
   init () {}
 
   preload () {}
@@ -261,3 +260,5 @@ export default class extends Phaser.State {
     this.add.tween(overlay).to({alpha: 0}, 800, 0).start()
   }
 }
+
+module.exports = MenuState

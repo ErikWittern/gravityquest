@@ -1,15 +1,19 @@
-import 'pixi'
-import 'p2'
-import Phaser from 'phaser'
+'use strict'
 
-import BootState from './states/Boot'
-import LoadState from './states/Load'
-import MenuState from './states/Menu'
-import IntroState from './states/Intro'
-import PlayState from './states/Play'
-import OutroState from './states/Outro'
+// Setting globals, see:
+//   https://www.npmjs.com/package/phaser-ce#browserify--commonjs
+window.PIXI   = require('phaser-ce/build/custom/pixi');
+window.p2     = require('phaser-ce/build/custom/p2');
+window.Phaser = require('phaser-ce/build/custom/phaser-split');
 
-import config from './config'
+const BootState = require('./states/Boot')
+const LoadState = require('./states/Load')
+const MenuState = require('./states/Menu')
+const IntroState = require('./states/Intro')
+const PlayState = require('./states/Play')
+const OutroState = require('./states/Outro')
+
+const config = require('./config')
 
 class Game extends Phaser.Game {
   constructor () {

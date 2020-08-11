@@ -1,10 +1,9 @@
 'use strict'
 
-import Phaser from 'phaser'
-import Player from '../sprites/Player'
-import Utils from '../utils'
+const Player = require('../sprites/Player')
+const Utils = require('../utils')
 
-export default class extends Phaser.State {
+class IntroState extends Phaser.State {
   init () {}
 
   preload () {}
@@ -339,3 +338,5 @@ export default class extends Phaser.State {
     return Math.sqrt(dx * dx + dy * dy)
   }
 }
+
+module.exports = IntroState

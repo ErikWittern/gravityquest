@@ -1,8 +1,6 @@
 'use strict'
 
-import Phaser from 'phaser'
-
-export default class extends Phaser.Sprite {
+class Intro extends Phaser.Sprite {
   constructor ({ game, playState, intro }) {
     super(game)
 
@@ -48,3 +46,5 @@ export default class extends Phaser.Sprite {
     }
   }
 }
+
+module.exports = Intro

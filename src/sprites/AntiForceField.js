@@ -1,8 +1,6 @@
 'use strict'
 
-import Phaser from 'phaser'
-
-export default class extends Phaser.Sprite {
+class AntiForceField extends Phaser.Sprite {
   constructor ({ game, x, y, asset, playState }) {
     super(game, x, y, asset)
 
@@ -30,3 +28,5 @@ export default class extends Phaser.Sprite {
     }
   }
 }
+
+module.exports = AntiForceField

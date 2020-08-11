@@ -1,8 +1,6 @@
 'use strict'
 
-import Phaser from 'phaser'
-
-export default class extends Phaser.Sprite {
+class Nova extends Phaser.Sprite {
   constructor ({ game, x, y, asset }) {
     super(game, x, y, asset)
 
@@ -15,3 +13,5 @@ export default class extends Phaser.Sprite {
     this.animations.play('flicker', 5, true)
   }
 }
+
+module.exports = Nova

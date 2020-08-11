@@ -1,9 +1,8 @@
 'use strict'
 
-import Phaser from 'phaser'
-import Utils from '../utils'
+const Utils = require('../utils')
 
-export default class extends Phaser.Sprite {
+class Mute extends Phaser.Sprite {
   constructor ({ game, x, y }) {
     super(game, x, y, 'mute_button')
 
@@ -57,3 +56,5 @@ export default class extends Phaser.Sprite {
     }
   }
 }
+
+module.exports = Mute

@@ -1,19 +1,18 @@
 'use strict'
 
-import Phaser from 'phaser'
-import Levels from '../Levels'
-import Asteroid from '../sprites/Asteroid'
-import Nova from '../sprites/Nova'
-import AntiForceField from '../sprites/AntiForceField'
-import Goody from '../sprites/Goody'
-import Player from '../sprites/Player'
-import Alien from '../sprites/Alien'
-import VictoryMenu from '../sprites/VictoryMenu'
-import PauseMenu from '../sprites/PauseMenu'
-import Intro from '../sprites/Intro'
-import Utils from '../utils'
+const Levels = require('../Levels')
+const Asteroid = require('../sprites/Asteroid')
+const Nova = require('../sprites/Nova')
+const AntiForceField = require('../sprites/AntiForceField')
+const Goody = require('../sprites/Goody')
+const Player = require('../sprites/Player')
+const Alien = require('../sprites/Alien')
+const VictoryMenu = require('../sprites/VictoryMenu')
+const PauseMenu = require('../sprites/PauseMenu')
+const Intro = require('../sprites/Intro')
+const Utils = require('../utils')
 
-export default class extends Phaser.State {
+class PlayState extends Phaser.State {
   init () {}
 
   preload () {}
@@ -634,3 +633,5 @@ export default class extends Phaser.State {
     return Math.sqrt(dx * dx + dy * dy)
   }
 }
+
+module.exports = PlayState
