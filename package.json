@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --no-source-maps"
   },
   "dependencies": {
     "p2": "^0.7.1",
